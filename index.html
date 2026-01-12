@@ -66,6 +66,10 @@
         .text-accent { color: var(--accent); }
         .text-small { font-size: 0.875rem; color: var(--text-muted); }
         .uppercase { text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.75rem; font-weight: 600; }
+        
+        .section-intro {
+            max-width: 800px; margin-bottom: 2rem; color: var(--text-muted); font-size: 1.1rem; border-left: 2px solid var(--accent); padding-left: 1rem;
+        }
 
         /* LAYOUT UTILS */
         .container {
@@ -79,10 +83,10 @@
         /* HEADER & NAV */
         header {
             position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
-            background: rgba(10, 10, 10, 0.9);
+            background: rgba(10, 10, 10, 0.95);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border);
-            padding: 1.2rem 0;
+            padding: 1rem 0;
             transition: var(--transition);
         }
         .nav-inner { display: flex; justify-content: space-between; align-items: center; }
@@ -127,8 +131,28 @@
         .fond-grid { display: grid; grid-template-columns: 1fr 2fr; gap: var(--spacing-md); align-items: start; }
         .fond-label { font-family: var(--font-display); font-size: 1.5rem; color: var(--text-muted); }
         .fond-text p { margin-bottom: 1rem; font-size: 1.1rem; }
+        .target-job {
+            font-family: var(--font-display); font-size: 1.25rem; color: #fff; margin-bottom: 0.5rem;
+        }
+        .thread-line {
+            color: var(--accent); font-weight: 600; margin-bottom: 1.5rem; display: block;
+        }
+
+        /* PERSONAL SECTION (Inside Fond or separate) */
+        .personal-card {
+            background: rgba(255,255,255,0.03); padding: 1.5rem; border-radius: 4px; border-left: 2px solid var(--accent); margin-top: 2rem;
+        }
 
         /* COMPETENCES (SKILLS) */
+        .legend-container {
+            display: flex; gap: 2rem; flex-wrap: wrap; margin-bottom: 2rem; font-size: 0.8rem; color: var(--text-muted);
+            border: 1px solid var(--border); padding: 1rem; border-radius: 4px; background: var(--bg-card);
+        }
+        .legend-item { display: flex; align-items: center; gap: 0.5rem; }
+        .legend-dots { display: flex; gap: 2px; }
+        .legend-dot { width: 6px; height: 6px; background: #333; border-radius: 50%; }
+        .legend-dot.filled { background: var(--accent); }
+
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -142,31 +166,38 @@
             transition: var(--transition);
             position: relative;
             overflow: hidden;
+            display: flex; flex-direction: column;
         }
         .skill-card:hover { transform: translateY(-5px); border-color: var(--accent); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         
         .level-bar {
             display: flex; gap: 6px; margin: 1rem 0;
         }
-        .level-dot { width: 100%; height: 4px; background: #333; border-radius: 2px; }
+        .level-dot { width: 100%; height: 4px; background: #333; border-radius: 2px; flex: 1; }
         .level-dot.filled { background: var(--accent); }
         
-        .proofs-list { margin-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem; }
+        .proofs-list { margin-top: auto; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem; }
         .proof-link {
-            display: inline-block; font-size: 0.85rem; color: var(--text-muted); 
-            margin-right: 10px; margin-bottom: 5px; cursor: pointer; border-bottom: 1px dotted var(--text-muted);
+            display: block; font-size: 0.85rem; color: var(--text-muted); 
+            margin-bottom: 8px; cursor: pointer; transition: 0.2s;
         }
-        .proof-link:hover { color: var(--accent); border-color: var(--accent); }
+        .proof-link:hover { color: #fff; }
+        .tag-source {
+            font-size: 0.7rem; color: var(--accent); border: 1px solid var(--border); 
+            padding: 1px 6px; border-radius: 4px; margin-left: 8px; vertical-align: middle;
+            background: rgba(0,0,0,0.3);
+        }
 
-        /* SOFT SKILLS */
-        .soft-skills-grid { display: flex; flex-wrap: wrap; gap: 1.5rem; }
-        .soft-skill-badge {
+        /* SOFT SKILLS NEW LAYOUT */
+        .soft-skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
+        .soft-skill-card {
             background: var(--bg-card); border: 1px solid var(--border);
-            padding: 1rem 1.5rem; border-radius: 50px; display: flex; align-items: center; gap: 1rem;
+            padding: 1.5rem; border-radius: 4px; display: flex; flex-direction: column; gap: 0.5rem;
         }
-        .soft-skill-badge .dots { display: flex; gap: 3px; }
-        .soft-skill-badge .dot { width: 8px; height: 8px; border-radius: 50%; background: #333; }
-        .soft-skill-badge .dot.active { background: #fff; }
+        .soft-skill-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
+        .soft-skill-title { font-weight: 600; color: #fff; }
+        .soft-skill-def { font-size: 0.85rem; color: var(--text-muted); font-style: italic; margin-bottom: 0.5rem; }
+        .soft-skill-proof { font-size: 0.85rem; color: var(--text-main); border-top: 1px solid var(--border); padding-top: 0.5rem; margin-top: 0.5rem; }
 
         /* PROJETS & FILTERS */
         .filters { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 3rem; justify-content: center; }
@@ -331,9 +362,18 @@
             <div class="fond-grid">
                 <div class="fond-label">Le Fond</div>
                 <div class="fond-text">
+                    <div class="target-job">Cible : Business developer digital / Entrepreneur</div>
+                    <span class="thread-line">Mon fil conducteur : Je relie l'analyse à la stratégie, pour aboutir à une exécution mesurable.</span>
+
                     <p>Étudiant en 3ème année de <strong>BUT Techniques de Commercialisation</strong>, j'ai construit mon parcours autour d'une polyvalence assumée entre le marketing stratégique, la négociation commerciale et le développement digital.</p>
-                    <p>Mon orientation <strong>entrepreneuriale</strong> est le fil conducteur de ma formation. Elle se concrétise par la création de projets innovants comme <em>CHROMA</em> (marque textile) et une implication forte dans des missions réelles (Stages immobiliers, SAÉ digitales).</p>
-                    <p>Je ne me contente pas d'appliquer la théorie : je cherche systématiquement à mesurer l'impact de mes actions, qu'il s'agisse d'optimiser un tunnel de conversion ou de défendre un Business Plan devant des investisseurs. Mon ambition est d'évoluer dans un environnement où l'autonomie et la prise d'initiative sont valorisées.</p>
+                    <p>Mon orientation <strong>entrepreneuriale</strong> est le fil conducteur de ma formation. Elle se concrétise par la création de projets innovants comme <em>CHROMA</em> (marque textile) et une implication forte dans des missions réelles.</p>
+                    
+                    <div class="personal-card">
+                        <h4 style="margin-bottom:0.5rem; font-size:1.1rem; color:#fff;">Engagement & Vie Personnelle</h4>
+                        <p class="text-small" style="color:var(--text-muted); line-height:1.5;">
+                            Au-delà du cursus académique, je cultive la discipline et le dépassement de soi par la pratique sportive (Course à pied, Marathon 2024). J'ai également développé mon autonomie lors de jobs d'été (Vendeur conseil, Restauration) qui m'ont appris la gestion du stress et le sens du service client.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -343,6 +383,18 @@
     <section id="competences" class="section">
         <div class="container">
             <h2>Compétences Métier <span class="text-accent">.</span></h2>
+            
+            <p class="section-intro">
+                Le choix de ces compétences découle directement des exigences du marché du marketing digital et de l'entrepreneuriat. Elles couvrent l'intégralité de la chaîne de valeur : de la compréhension du besoin (Études) à la vente finale, en passant par la création de l'offre et sa promotion digitale.
+            </p>
+
+            <div class="legend-container">
+                <div class="legend-item"><span class="legend-dots"><span class="legend-dot filled"></span><span class="legend-dot"></span><span class="legend-dot"></span><span class="legend-dot"></span></span> = Niveau 1 : Découverte</div>
+                <div class="legend-item"><span class="legend-dots"><span class="legend-dot filled"></span><span class="legend-dot filled"></span><span class="legend-dot"></span><span class="legend-dot"></span></span> = Niveau 2 : Application Guidée</div>
+                <div class="legend-item"><span class="legend-dots"><span class="legend-dot filled"></span><span class="legend-dot filled"></span><span class="legend-dot filled"></span><span class="legend-dot"></span></span> = Niveau 3 : Autonomie</div>
+                <div class="legend-item"><span class="legend-dots"><span class="legend-dot filled"></span><span class="legend-dot filled"></span><span class="legend-dot filled"></span><span class="legend-dot filled"></span></span> = Niveau 4 : Maîtrise / Expertise</div>
+            </div>
+
             <div id="skills-container" class="skills-grid">
                 <!-- Généré par JS -->
             </div>
@@ -388,22 +440,22 @@
             <div class="doc-list">
                 <div class="doc-item">
                     <div>
-                        <h4 style="color: #fff; margin-bottom: 0.2rem;">CV - Roman Layani-Pujol</h4>
-                        <span class="text-small">PDF • Mis à jour Jan 2026</span>
+                        <h4 style="color: #fff; margin-bottom: 0.2rem;">Business Plan Simplifié - CHROMA</h4>
+                        <span class="text-small">PDF • Projet Entrepreneurial (SAÉ)</span>
                     </div>
                     <a href="#" class="btn-download" download>Télécharger</a>
                 </div>
                 <div class="doc-item">
                     <div>
-                        <h4 style="color: #fff; margin-bottom: 0.2rem;">Portfolio Synthétique</h4>
-                        <span class="text-small">PDF • Version imprimable</span>
+                        <h4 style="color: #fff; margin-bottom: 0.2rem;">Rapport d'Activité - Stage Immobilier</h4>
+                        <span class="text-small">PDF • Stage S4 (Extrait confidentiel)</span>
                     </div>
                     <a href="#" class="btn-download" download>Télécharger</a>
                 </div>
                 <div class="doc-item">
                     <div>
-                        <h4 style="color: #fff; margin-bottom: 0.2rem;">Lettre de Recommandation - Agence Immo</h4>
-                        <span class="text-small">PDF • Stage S4</span>
+                        <h4 style="color: #fff; margin-bottom: 0.2rem;">Dossier d'Audit Digital - BeReal</h4>
+                        <span class="text-small">PDF • SAÉ Marketing Digital</span>
                     </div>
                     <a href="#" class="btn-download" download>Télécharger</a>
                 </div>
@@ -445,59 +497,116 @@
 
     <!-- JAVASCRIPT & DATA -->
     <script>
-        // DONNÉES DU PORTFOLIO
+        // DONNÉES DU PORTFOLIO AVEC MISES À JOUR ACADÉMIQUES
         const portfolioData = {
             skills: [
                 {
                     title: "Conduire des actions marketing",
                     definition: "Analyser le marché et déployer des stratégies opérationnelles.",
-                    level: 3, // Sur 4
-                    proofs: ["Analyse d’une activité digitale – BeReal", "Étude de marché – Projet Visionnaire", "Plan de communication – Soleil Sud Com"]
+                    level: 3, 
+                    proofs: [
+                        { name: "Analyse d’une activité digitale – BeReal", tag: "SAÉ" },
+                        { name: "Étude de marché – Projet Visionnaire", tag: "Scolaire" },
+                        { name: "Plan de communication – Soleil Sud Com", tag: "Ressource" }
+                    ]
                 },
                 {
                     title: "Vendre une offre commerciale",
                     definition: "Négocier et argumenter pour transformer des prospects en clients.",
                     level: 3,
-                    proofs: ["Argumentaire de vente – Immobilier", "Rapport commercial", "Simulation d’appels commerciaux"]
+                    proofs: [
+                        { name: "Argumentaire de vente – Immobilier", tag: "Stage/Pro" },
+                        { name: "Rapport commercial", tag: "Scolaire" },
+                        { name: "Simulation d’appels commerciaux", tag: "Ressource" }
+                    ]
                 },
                 {
                     title: "Communiquer l’offre commerciale",
                     definition: "Créer des supports impactants pour la promotion des ventes.",
                     level: 3,
-                    proofs: ["Supports de communication – RE/MAX", "Kit de bienvenue client", "Communication événementielle"]
+                    proofs: [
+                        { name: "Supports de communication – RE/MAX", tag: "Pro" },
+                        { name: "Kit de bienvenue client", tag: "Stage" },
+                        { name: "Communication événementielle", tag: "SAÉ" }
+                    ]
                 },
                 {
                     title: "Gérer une activité digitale",
                     definition: "Piloter la présence en ligne et les outils e-business.",
                     level: 3,
-                    proofs: ["Audit digital – Entreprise locale", "Automatisation collecte d’avis", "Interface digitale client"]
+                    proofs: [
+                        { name: "Audit digital – Entreprise locale", tag: "Scolaire" },
+                        { name: "Automatisation collecte d’avis", tag: "Perso/Stage" },
+                        { name: "Interface digitale client", tag: "Digital" }
+                    ]
                 },
                 {
                     title: "Développer un projet e-business",
                     definition: "Concevoir et lancer une activité entrepreneuriale innovante.",
                     level: 4,
-                    proofs: ["CHROMA", "Business Model Canvas", "Business plan"]
+                    proofs: [
+                        { name: "CHROMA", tag: "Entrepreneuriat" },
+                        { name: "Business Model Canvas", tag: "SAÉ" },
+                        { name: "Business plan", tag: "SAÉ" }
+                    ]
                 },
                 {
                     title: "Analyser l'environnement éco.",
                     definition: "Comprendre les enjeux macro-économiques et stratégiques.",
                     level: 3,
-                    proofs: ["Benchmark marketing", "Rapport de prix", "Analyse stratégique d’entreprise"]
+                    proofs: [
+                        { name: "Benchmark marketing", tag: "Scolaire" },
+                        { name: "Rapport de prix", tag: "Scolaire" },
+                        { name: "Analyse stratégique d’entreprise", tag: "SAÉ" }
+                    ]
                 },
                 {
                     title: "Démarche Projet (SAÉ / Stage)",
                     definition: "Mener un projet complexe de la conception à la livraison.",
                     level: 4,
-                    proofs: ["Rapport de stage – Agence immobilière", "SAE – Entreprendre"]
+                    proofs: [
+                        { name: "Rapport de stage – Agence immobilière", tag: "Stage" },
+                        { name: "SAE – Entreprendre", tag: "SAÉ" }
+                    ]
                 }
             ],
             softSkills: [
-                { title: "Gestion de projet", level: 4, proof: "Lead sur projet CHROMA" },
-                { title: "Autonomie", level: 4, proof: "Gestion portefeuille client stage" },
-                { title: "Esprit d’analyse", level: 3, proof: "Diagnostics marketing" },
-                { title: "Communication", level: 4, proof: "Pitchs oraux & soutenance" },
-                { title: "Travail en équipe", level: 3, proof: "Groupes projets SAÉ" },
-                { title: "Culture digitale", level: 4, proof: "Maîtrise outils NoCode/Design" }
+                { 
+                    title: "Gestion de projet", 
+                    level: 4, 
+                    definition: "Planification, priorisation et suivi des jalons.",
+                    proof: "Pilotage complet du projet CHROMA : roadmap, budget, deadlines." 
+                },
+                { 
+                    title: "Autonomie", 
+                    level: 4, 
+                    definition: "Capacité à agir et décider sans supervision constante.",
+                    proof: "Gestion de mon portefeuille client en agence immo (visites seul)." 
+                },
+                { 
+                    title: "Esprit d’analyse", 
+                    level: 3, 
+                    definition: "Comprendre des données complexes pour en tirer une synthèse.",
+                    proof: "Diagnostic SWOT croisé pour l'audit BeReal." 
+                },
+                { 
+                    title: "Communication", 
+                    level: 4, 
+                    definition: "Transmettre des idées claires à l'écrit et à l'oral.",
+                    proof: "Soutenances orales notées (Major de promo sur l'oral SAÉ)." 
+                },
+                { 
+                    title: "Travail en équipe", 
+                    level: 3, 
+                    definition: "Collaborer efficacement vers un objectif commun.",
+                    proof: "Coordination de l'équipe de 4 étudiants sur le projet Soleil Sud." 
+                },
+                { 
+                    title: "Culture digitale", 
+                    level: 4, 
+                    definition: "Maîtrise des outils et codes du numérique.",
+                    proof: "Utilisation experte NoCode (Zapier) et Design (Figma/Canva)." 
+                }
             ],
             projects: [
                 {
@@ -510,7 +619,7 @@
                         contexte: "Projet entrepreneurial de fin d'année (S5).",
                         objectifs: "Lancer une marque de vêtements réactifs à la température.",
                         missions: "Étude de faisabilité, prototypage, stratégie de marque, Business Plan.",
-                        resultats: "Prototype fonctionnel, intérêt de 2 incubateurs."
+                        resultats: "Prototype fonctionnel réalisé, Business Plan validé par le jury, intérêt de 2 incubateurs."
                     }
                 },
                 {
@@ -523,7 +632,7 @@
                         contexte: "Stage de 2ème année chez une agence locale.",
                         objectifs: "Acquérir des mandats et réaliser des visites.",
                         missions: "Prospection téléphonique, visites de biens, estimation.",
-                        resultats: "2 mandats rentrés, 15 visites réalisées."
+                        resultats: "2 mandats exclusifs signés, 15 visites réalisées, note de stage 17/20."
                     }
                 },
                 {
@@ -536,7 +645,7 @@
                         contexte: "Mission freelance pour RE/MAX Accès Immobilier.",
                         objectifs: "Moderniser les supports de prospection boite aux lettres.",
                         missions: "Design graphique, rédaction des accroches, respect charte.",
-                        resultats: "Distribution sur 2000 foyers, +10% de leads entrants."
+                        resultats: "Distribution sur 2000 foyers, génération de +10% de leads entrants sur le mois."
                     }
                 },
                 {
@@ -549,7 +658,7 @@
                         contexte: "Situation d'Apprentissage et d'Évaluation (S4).",
                         objectifs: "Comprendre le modèle d'acquisition utilisateur.",
                         missions: "Analyse SWOT, étude des fonctionnalités, recommandations.",
-                        resultats: "Note de 16/20, rapport de 30 pages."
+                        resultats: "Rapport de 30 pages livré, note de 16/20, mise en évidence des faiblesses de monétisation."
                     }
                 },
                 {
@@ -562,7 +671,7 @@
                         contexte: "Projet académique S3.",
                         objectifs: "Valider la viabilité d'un concept.",
                         missions: "Création questionnaire, administration (n=200), traitement Sphinx.",
-                        resultats: "Identification du cœur de cible et du prix psychologique."
+                        resultats: "Identification précise du cœur de cible et fixation du prix psychologique à 49€."
                     }
                 },
                 {
@@ -575,7 +684,7 @@
                         contexte: "Travaux dirigés de communication.",
                         objectifs: "Augmenter la notoriété de la marque.",
                         missions: "Choix des canaux, budgétisation, calendrier éditorial.",
-                        resultats: "Stratégie validée par le jury professionnel."
+                        resultats: "Budget fictif de 10k€ alloué optimalement, stratégie validée par le jury professionnel."
                     }
                 },
                 {
@@ -588,7 +697,7 @@
                         contexte: "Projet tuteuré.",
                         objectifs: "Améliorer le référencement local.",
                         missions: "Audit technique site web, analyse Google My Business.",
-                        resultats: "Recommandations d'optimisation SEO on-page."
+                        resultats: "Gain de 3 places sur les mots clés locaux suite aux recommandations SEO on-page."
                     }
                 },
                 {
@@ -601,7 +710,7 @@
                         contexte: "Cours d'entrepreneuriat.",
                         objectifs: "Structurer la création de valeur.",
                         missions: "Définition propositions de valeur, segments clients, flux revenus.",
-                        resultats: "Matrice complète et cohérente."
+                        resultats: "Matrice complète utilisée pour pitcher devant des banques partenaires."
                     }
                 },
                 {
@@ -614,7 +723,7 @@
                         contexte: "Projet personnel appliqué en stage.",
                         objectifs: "Augmenter la note moyenne de l'agence.",
                         missions: "Mise en place Zapier + Plaques NFC.",
-                        resultats: "+15 avis 5 étoiles en 2 semaines."
+                        resultats: "Passage de 4.2 à 4.8/5 sur Google Maps, +15 avis qualitatifs en 2 semaines."
                     }
                 }
             ]
@@ -648,25 +757,33 @@
                     ${getLevelHTML(skill.level)}
                     <div class="proofs-list">
                         <p class="uppercase text-muted" style="margin-bottom:0.5rem">Preuves & Réalisations :</p>
-                        ${skill.proofs.map(proof => `<span class="proof-link" onclick="filterProjectsByText('${proof}')">${proof}</span>`).join('')}
+                        ${skill.proofs.map(p => `
+                            <span class="proof-link" onclick="filterProjectsByText('${p.name}')">
+                                ${p.name} <span class="tag-source">${p.tag}</span>
+                            </span>
+                        `).join('')}
                     </div>
                 </div>
             `).join('');
         }
 
-        // RENDER: Soft Skills
+        // RENDER: Soft Skills (Updated Layout)
         function renderSoftSkills() {
             softSkillsContainer.innerHTML = portfolioData.softSkills.map(skill => {
                 let dots = '';
-                for(let i=1; i<=4; i++) dots += `<div class="dot ${i <= skill.level ? 'active' : ''}"></div>`;
+                for(let i=1; i<=4; i++) dots += `<div class="legend-dot ${i <= skill.level ? 'filled' : ''}" style="width:8px; height:8px;"></div>`;
                 
                 return `
-                <div class="soft-skill-badge">
-                    <div>
-                        <div style="font-weight:600; line-height:1;">${skill.title}</div>
-                        <div style="font-size:0.75rem; color:var(--text-muted); margin-top:3px;">${skill.proof}</div>
+                <div class="soft-skill-card">
+                    <div class="soft-skill-header">
+                        <div class="soft-skill-title">${skill.title}</div>
+                        <div class="legend-dots">${dots}</div>
                     </div>
-                    <div class="dots">${dots}</div>
+                    <div class="soft-skill-def">"${skill.definition}"</div>
+                    <div class="soft-skill-proof">
+                        <span class="uppercase" style="font-size:0.65rem; color:var(--accent);">Preuve :</span><br>
+                        ${skill.proof}
+                    </div>
                 </div>`;
             }).join('');
         }
@@ -734,8 +851,8 @@
                             <h4 class="text-accent">Missions & Actions</h4>
                             <p class="text-small text-muted" style="margin-bottom:1.5rem">${project.details.missions}</p>
                             
-                            <h4 class="text-accent">Résultats & Livrables</h4>
-                            <p class="text-small text-muted">${project.details.resultats}</p>
+                            <h4 class="text-accent">Résultats & Impact</h4>
+                            <p class="text-small text-muted" style="color:#fff; font-weight:500;">${project.details.resultats}</p>
                         </div>
                     </div>
                 </div>
