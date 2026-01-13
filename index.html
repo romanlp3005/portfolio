@@ -349,7 +349,7 @@
             .project-card .badge { font-size: 0.6rem; padding: 2px 4px; margin-bottom: 2px; }
 
             /* --- CAROUSELS FLUIDES --- */
-            .framework-grid, .quick-proofs, .founder-grid {
+            .quick-proofs, .founder-grid {
                 display: flex; 
                 flex-wrap: nowrap; /* EMPÊCHE LE RETOUR À LA LIGNE */
                 overflow-x: auto; 
@@ -365,16 +365,29 @@
                 -ms-overflow-style: none;
                 scrollbar-width: none;
             }
-            .framework-grid::-webkit-scrollbar, 
             .quick-proofs::-webkit-scrollbar, 
             .founder-grid::-webkit-scrollbar {
                 display: none;
             }
             
-            .fw-step, .qp-card, .founder-card {
+            .qp-card, .founder-card {
                 min-width: 85%; /* LARGEUR FIXE PAR CARTE */
                 flex: 0 0 85%; /* EMPÊCHE LE RÉTRÉCISSEMENT */
                 scroll-snap-align: center;
+            }
+
+            /* --- FRAMEWORK GRID FIX (2 colonnes, pas de carrousel) --- */
+            .framework-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+                margin-bottom: 3rem;
+            }
+            .fw-step {
+                min-width: 0;
+                flex: none;
+                scroll-snap-align: none;
+                padding: 1.5rem;
             }
             
             /* ADJUST PADDING */
@@ -486,7 +499,7 @@
                         </div>
                     </div>
 
-                    <!-- Framework (Carousel Mobile FIX) -->
+                    <!-- Framework (2 Columns Mobile FIX) -->
                     <h3 class="text-center mb-4">Ma Méthode</h3>
                     <div class="framework-grid">
                         <div class="fw-step">
