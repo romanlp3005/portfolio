@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio Roman Layani-Pujol - Entrepreneur & Business Developer. BUT TC S5.">
+    <meta name="description" content="Portfolio Roman Layani-Pujol - Business Developer & Entrepreneur. BUT TC S5.">
     <title>Roman Layani-Pujol | Portfolio Entrepreneur</title>
     
     <!-- Google Fonts -->
@@ -15,26 +15,21 @@
         /* * 1. DESIGN SYSTEM 
          */
         :root {
-            /* Palette Premium Dark */
-            --bg-body: #0D0D0D;
-            --bg-card: #161616;
-            --bg-glass: rgba(22, 22, 22, 0.95);
-            --text-main: #F6F5F3;
-            --text-muted: #A0A0A0;
-            --accent: #C9A66B; /* Or Premium */
-            --accent-dim: rgba(201, 166, 107, 0.15);
+            --bg-body: #050505;
+            --bg-card: #121212;
+            --text-main: #F2F2F2;
+            --text-muted: #9CA3AF;
+            --accent: #D4AF37; /* Or Premium */
+            --accent-dim: rgba(212, 175, 55, 0.1);
             --border: #2A2A2A;
             
-            /* Typography */
             --font-heading: 'Playfair Display', serif;
             --font-body: 'Plus Jakarta Sans', sans-serif;
             
-            /* Layout */
             --header-height: 80px;
             --max-width: 1200px;
             
-            /* Transitions */
-            --ease-premium: cubic-bezier(0.2, 1, 0.2, 1);
+            --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
         }
 
         /* * 2. RESET & BASE 
@@ -47,9 +42,6 @@
             font-family: var(--font-body);
             line-height: 1.6;
             overflow-x: hidden;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
         }
 
         a { text-decoration: none; color: inherit; transition: 0.3s; }
@@ -57,12 +49,13 @@
         ul { list-style: none; }
         
         h1, h2, h3, h4 { font-family: var(--font-heading); color: #fff; font-weight: 600; }
-        h1 { font-size: clamp(2.5rem, 8vw, 5.5rem); line-height: 1.1; letter-spacing: -0.02em; }
-        h2 { font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 2rem; position: relative; display: inline-block; }
-        h2::after { 
-            content: ''; position: absolute; left: 0; bottom: -5px; width: 40px; height: 2px; background: var(--accent); 
-        }
         
+        /* Typography Scale */
+        h1 { font-size: clamp(2.5rem, 6vw, 5rem); line-height: 1.1; letter-spacing: -0.02em; }
+        h2 { font-size: clamp(2rem, 4vw, 3.5rem); margin-bottom: 1.5rem; position: relative; display: inline-block; }
+        h2::after { 
+            content: ''; position: absolute; left: 0; bottom: -5px; width: 40px; height: 3px; background: var(--accent); 
+        }
         h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
 
         .text-accent { color: var(--accent); }
@@ -72,21 +65,22 @@
         /* Badges */
         .badge {
             display: inline-block; padding: 4px 10px; border-radius: 4px; 
-            font-size: 0.7rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;
+            font-size: 0.65rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;
             border: 1px solid var(--border); margin-right: 5px; margin-bottom: 5px; white-space: nowrap;
         }
         .badge.entrepreneur { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
         .badge.sae { border-color: #6366f1; color: #a5a6f6; background: rgba(99, 102, 241, 0.1); }
         .badge.pro { border-color: #10b981; color: #6ee7b7; background: rgba(16, 185, 129, 0.1); }
+        .badge.scolaire { border-color: var(--text-muted); color: var(--text-muted); }
 
         /* * 3. UI COMPONENTS 
          */
         .btn-primary {
-            background: var(--accent); color: #000; padding: 1rem 2rem; 
+            background: var(--accent); color: #000; padding: 0.8rem 2rem; 
             font-weight: 600; border-radius: 2px; transition: 0.3s var(--ease-premium);
             display: inline-block; text-align: center; white-space: nowrap;
         }
-        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(201, 166, 107, 0.2); background: #fff; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2); background: #fff; }
         
         .btn-outline {
             border: 1px solid var(--border); color: var(--text-muted); padding: 0.8rem 2rem; 
@@ -94,24 +88,19 @@
         }
         .btn-outline:hover { border-color: var(--accent); color: #fff; }
 
-        .container {
-            width: 90%; max-width: var(--max-width); margin: 0 auto;
-        }
+        .container { width: 90%; max-width: var(--max-width); margin: 0 auto; }
 
-        /* * 4. HEADER & NAV 
+        /* * 4. HEADER 
          */
         header {
             position: fixed; top: 0; left: 0; width: 100%; height: var(--header-height);
-            background: rgba(13, 13, 13, 0.95); backdrop-filter: blur(12px);
+            background: rgba(5, 5, 5, 0.95); backdrop-filter: blur(12px);
             z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.05);
             display: flex; align-items: center;
         }
-        .nav-inner {
-            display: flex; justify-content: space-between; align-items: center; width: 100%;
-        }
-        .logo { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; cursor: pointer; z-index: 1002; position: relative; }
+        .nav-inner { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+        .logo { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; cursor: pointer; z-index: 1002; }
         
-        /* Desktop Nav */
         .nav-links { display: flex; gap: 2rem; align-items: center; }
         .nav-link { 
             font-size: 0.9rem; color: var(--text-muted); position: relative; padding: 5px 0; cursor: pointer;
@@ -123,32 +112,19 @@
         .nav-link:hover, .nav-link.active { color: #fff; }
         .nav-link:hover::after, .nav-link.active::after { width: 100%; }
 
-        .header-cta { display: block; }
-
-        /* Mobile Menu Toggle */
         .menu-toggle { display: none; flex-direction: column; gap: 6px; cursor: pointer; z-index: 1002; }
         .bar { width: 25px; height: 2px; background-color: var(--text-main); transition: 0.3s; }
-        
-        /* Mobile Menu Active State Animation */
         .menu-toggle.active .bar:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); }
         .menu-toggle.active .bar:nth-child(2) { opacity: 0; }
         .menu-toggle.active .bar:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
 
-        /* * 5. PAGE STRUCTURE (MULTI-PAGE SIMULATION) 
+        /* * 5. NAVIGATION & SECTIONS (SPA) 
          */
-        main { 
-            margin-top: var(--header-height); 
-            flex-grow: 1;
-            position: relative;
-        }
+        main { padding-top: var(--header-height); }
         
         .page-view {
-            display: none;
-            padding: 2rem 0 4rem 0;
-            min-height: calc(100vh - var(--header-height));
-            animation: fadeIn 0.6s var(--ease-premium);
+            display: none; animation: fadeIn 0.6s var(--ease-premium); padding-bottom: 4rem;
         }
-        
         .page-view.active { display: block; }
 
         @keyframes fadeIn {
@@ -156,142 +132,133 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* * 6. HERO & ACCUEIL CONTENT 
+        /* * 6. HERO & ACCUEIL BLOCKS 
          */
         .hero-section {
-            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
-            min-height: 60vh; margin-bottom: 4rem; padding-top: 2rem;
+            min-height: 60vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; padding: 4rem 0;
         }
         
-        .hero-tags { margin-bottom: 2rem; display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; }
-        .hero-tags span { 
-            border: 1px solid var(--border); padding: 5px 15px; border-radius: 50px; 
-            font-size: 0.8rem; color: var(--text-muted);
+        /* Bloc: En Bref */
+        .summary-block {
+            border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+            padding: 3rem 0; margin-bottom: 3rem; background: rgba(255,255,255,0.01);
+        }
+        .summary-grid {
+            display: grid; grid-template-columns: 1fr 1.5fr; gap: 3rem; align-items: center;
         }
 
-        /* Framework Grid */
+        /* Bloc: Preuves Rapides */
+        .proofs-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1.5rem; margin-bottom: 4rem;
+        }
+        .proof-item {
+            border-left: 2px solid var(--accent); padding-left: 1rem;
+        }
+        .proof-num { font-size: 1.5rem; font-weight: 700; color: #fff; display: block; }
+        .proof-label { font-size: 0.85rem; color: var(--text-muted); }
+
+        /* Framework */
         .framework-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 1.5rem; margin-top: 3rem; width: 100%;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 4rem;
         }
         .framework-card {
-            background: rgba(255,255,255,0.02); border: 1px solid var(--border);
-            padding: 2rem; text-align: left; transition: 0.3s; border-radius: 4px;
+            background: var(--bg-card); padding: 1.5rem; border: 1px solid var(--border); border-radius: 4px; transition: 0.3s;
         }
-        .framework-card:hover { border-color: var(--accent); background: rgba(255,255,255,0.04); }
-        .step-num { font-size: 3rem; color: var(--border); font-family: var(--font-heading); line-height: 1; opacity: 0.5; }
-        .step-title { color: var(--accent); font-size: 1.2rem; margin: 0.5rem 0; font-weight: 600; }
+        .framework-card:hover { border-color: var(--accent); transform: translateY(-5px); }
 
-        /* * 7. FOUNDER SECTION 
-         */
+        /* Projet Phare CHROMA */
+        .showcase-chroma {
+            background: linear-gradient(135deg, #1a1a1a 0%, #050505 100%);
+            border: 1px solid var(--accent); padding: 3rem; border-radius: 8px; margin-bottom: 4rem;
+            display: flex; flex-direction: column; align-items: center; text-align: center; position: relative; overflow: hidden;
+        }
+        .showcase-chroma::before {
+            content: 'PHARE'; position: absolute; top: 1rem; right: 1rem; font-size: 0.8rem;
+            letter-spacing: 0.1em; color: var(--accent); border: 1px solid var(--accent); padding: 2px 8px;
+        }
+
+        /* Fondateur Digitag */
         .founder-wrapper {
-            background: var(--bg-card); border: 1px solid var(--border); 
-            padding: 3rem; position: relative; overflow: hidden;
-            border-radius: 4px; margin-top: 4rem;
+            background: var(--bg-card); padding: 2rem; border: 1px solid var(--border); margin-bottom: 4rem;
         }
-        .founder-wrapper::before {
-            content: ''; position: absolute; left: 0; top: 0; width: 4px; height: 100%; background: var(--accent);
+        .founder-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem;
         }
-        .projects-row {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 2rem;
+        
+        /* Sommaire */
+        .summary-nav {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 4rem;
         }
-        .founder-project {
-            background: #0D0D0D; padding: 2rem; border: 1px solid var(--border); transition: 0.3s; border-radius: 4px;
+        .summary-link {
+            padding: 1.5rem; border: 1px solid var(--border); color: var(--text-muted); text-align: center;
+            transition: 0.3s; cursor: pointer;
         }
-        .founder-project:hover { border-color: var(--accent); }
+        .summary-link:hover { background: var(--bg-card); border-color: var(--accent); color: #fff; }
 
-        /* * 8. TIMELINE (PARCOURS) 
+        /* * 7. PARCOURS (TIMELINE) 
          */
-        .timeline-container {
-            position: relative; max-width: 900px; margin: 4rem auto;
-        }
+        .timeline-container { position: relative; max-width: 800px; margin: 0 auto; }
         .timeline-line {
             position: absolute; left: 50%; top: 0; bottom: 0; width: 2px;
-            background: linear-gradient(to bottom, var(--border), var(--accent), var(--border));
-            transform: translateX(-50%);
+            background: var(--border); transform: translateX(-50%);
         }
         .timeline-step {
-            position: relative; margin-bottom: 4rem; width: 100%; display: flex; justify-content: center;
+            position: relative; margin-bottom: 3rem; width: 100%; display: flex; justify-content: center;
         }
         .timeline-dot {
-            width: 16px; height: 16px; background: var(--bg-body); border: 2px solid var(--accent);
-            border-radius: 50%; position: absolute; left: 50%; top: 0; transform: translateX(-50%);
-            z-index: 2; transition: 0.3s; cursor: pointer;
+            width: 14px; height: 14px; background: var(--bg-body); border: 2px solid var(--accent);
+            border-radius: 50%; position: absolute; left: 50%; top: 5px; transform: translateX(-50%); z-index: 2;
         }
-        .timeline-step:hover .timeline-dot { background: var(--accent); box-shadow: 0 0 15px var(--accent); transform: translateX(-50%) scale(1.3); }
-        
         .timeline-content {
             width: 45%; background: var(--bg-card); padding: 1.5rem; border: 1px solid var(--border);
-            border-radius: 4px; transition: 0.3s; opacity: 0.8;
+            border-radius: 4px; transition: 0.3s;
         }
-        .timeline-step:hover .timeline-content { opacity: 1; transform: translateY(-5px); border-color: var(--accent); }
-        
         .timeline-step:nth-child(odd) .timeline-content { margin-right: auto; text-align: right; margin-right: 55%; }
         .timeline-step:nth-child(even) .timeline-content { margin-left: auto; text-align: left; margin-left: 55%; }
 
-        /* * 9. SKILLS GRID 
+        /* * 8. SKILLS & PROJECTS GRID 
          */
         .skills-grid {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem;
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem;
         }
         .skill-card {
-            background: var(--bg-card); padding: 2rem; border: 1px solid var(--border); border-radius: 4px;
+            background: var(--bg-card); padding: 2rem; border: 1px solid var(--border); transition: 0.3s;
         }
+        .skill-card:hover { border-color: var(--accent); }
         .level-bar { display: flex; gap: 4px; margin: 1rem 0; }
-        .level-dot { height: 4px; flex: 1; background: #333; }
-        .level-dot.filled { background: var(--accent); }
+        .level-segment { height: 4px; flex: 1; background: #333; }
+        .level-segment.filled { background: var(--accent); }
 
-        /* * 10. PROJECTS GRID 
-         */
-        .filters { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.8rem; margin-bottom: 3rem; }
+        .filters { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; }
         .filter-btn {
-            padding: 0.5rem 1.2rem; border: 1px solid var(--border); color: var(--text-muted);
-            border-radius: 50px; font-size: 0.85rem; transition: 0.3s; white-space: nowrap;
+            padding: 0.5rem 1rem; border: 1px solid var(--border); color: var(--text-muted);
+            border-radius: 50px; font-size: 0.8rem; transition: 0.3s;
         }
         .filter-btn:hover, .filter-btn.active { border-color: var(--accent); color: #fff; background: rgba(255,255,255,0.05); }
 
         .projects-grid {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem;
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2rem;
         }
         .project-card {
-            background: var(--bg-card); border: 1px solid var(--border); overflow: hidden; border-radius: 4px;
-            transition: 0.4s var(--ease-premium); display: flex; flex-direction: column;
-            cursor: pointer; position: relative;
+            background: var(--bg-card); border: 1px solid var(--border); overflow: hidden;
+            display: flex; flex-direction: column; cursor: pointer; transition: 0.3s;
         }
         .project-card:hover { transform: translateY(-5px); border-color: var(--accent); }
-
-        .project-thumb {
-            height: 220px; background: #111; position: relative; overflow: hidden;
+        .project-preview {
+            height: 200px; background: #1a1a1a; position: relative; overflow: hidden;
         }
-        .card-iframe {
-            width: 100%; height: 100%; border: none; pointer-events: none; opacity: 0.8; transition: 0.4s;
-        }
+        /* Iframe preview in card - pointer events none */
+        .card-iframe { width: 100%; height: 100%; border: none; pointer-events: none; opacity: 0.7; transition: 0.3s; }
         .project-card:hover .card-iframe { opacity: 1; scale: 1.02; }
+        .project-cta {
+            position: absolute; bottom: 0; left: 0; width: 100%; padding: 0.5rem;
+            background: var(--accent); color: #000; text-align: center; font-weight: 600; font-size: 0.8rem;
+            transform: translateY(100%); transition: 0.3s;
+        }
+        .project-card:hover .project-cta { transform: translateY(0); }
         
-        .project-info { padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; }
-        .project-tags { margin-top: auto; display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem; }
-        .tag { font-size: 0.7rem; border: 1px solid #333; padding: 2px 6px; color: #888; border-radius: 4px; }
-        
-        .card-cta {
-            position: absolute; bottom: 0; left: 0; width: 100%; padding: 0.8rem;
-            background: var(--accent); color: #000; text-align: center;
-            font-weight: 600; transform: translateY(100%); transition: 0.3s var(--ease-premium);
-        }
-        .project-card:hover .card-cta { transform: translateY(0); }
-
-        /* * 11. DOCUMENTS & CONTACT 
-         */
-        .doc-list {
-            max-width: 700px; margin: 0 auto 4rem auto; width: 100%;
-            background: var(--bg-card); border: 1px solid var(--border); padding: 2rem; border-radius: 4px;
-        }
-        .doc-item {
-            display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
-            padding: 1rem 0; border-bottom: 1px solid var(--border);
-        }
-        .doc-item:last-child { border-bottom: none; }
-
-        /* * 12. MODAL 
+        /* * 9. MODAL 
          */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -300,347 +267,309 @@
             opacity: 0; pointer-events: none; transition: 0.3s; backdrop-filter: blur(5px);
         }
         .modal-overlay.active { opacity: 1; pointer-events: all; }
-        
         .modal-container {
-            width: 95%; max-width: 1000px; height: 90vh; background: var(--bg-card);
-            border: 1px solid var(--border); display: flex; flex-direction: column; border-radius: 4px;
+            width: 95%; max-width: 1100px; height: 90vh; background: var(--bg-card);
+            border: 1px solid var(--border); display: flex; flex-direction: column;
         }
-        .modal-header {
-            padding: 1.5rem; border-bottom: 1px solid var(--border);
-            display: flex; justify-content: space-between; align-items: center;
-        }
-        .close-modal { font-size: 2rem; line-height: 1; transition: 0.3s; padding: 0.5rem; }
-        .close-modal:hover { color: var(--accent); }
-        .modal-body {
-            flex-grow: 1; overflow-y: auto; padding: 0; display: flex; flex-direction: column;
-        }
-        .modal-iframe-wrapper {
-            width: 100%; flex-grow: 1; min-height: 300px; background: #000;
-        }
+        .modal-header { padding: 1rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+        .close-modal { font-size: 2rem; color: var(--text-muted); }
+        .modal-body { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+        .modal-iframe-box { flex: 1; background: #000; position: relative; }
         .modal-iframe { width: 100%; height: 100%; border: none; }
-        .modal-details { padding: 2rem; background: var(--bg-card); border-top: 1px solid var(--border); }
+        .modal-footer { padding: 1.5rem; background: var(--bg-card); border-top: 1px solid var(--border); }
 
-        /* * 13. FOOTER 
+        /* * 10. RESPONSIVE 
          */
-        footer {
-            text-align: center; padding: 2rem; border-top: 1px solid var(--border); 
-            background: var(--bg-body); margin-top: auto;
-        }
-
-        /* * 14. RESPONSIVE MEDIA QUERIES 
-         */
-        @media (max-width: 900px) {
-            .projects-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
-        }
-
         @media (max-width: 768px) {
-            /* Header */
-            .header-cta { display: none; } /* Hide generic CTA in header to save space */
-            .menu-toggle { display: flex; }
-            
-            /* Mobile Nav Overlay */
             .nav-links {
                 position: fixed; top: 0; right: -100%; width: 100%; height: 100vh;
                 background: var(--bg-body); flex-direction: column; justify-content: center;
-                transition: 0.4s var(--ease-premium); padding: 2rem; z-index: 1001;
-                border-left: 1px solid var(--border);
+                transition: 0.4s; z-index: 1001; padding: 2rem; border-left: 1px solid var(--border);
             }
             .nav-links.active { right: 0; }
-            .nav-link { font-size: 1.5rem; margin: 1rem 0; width: 100%; text-align: center; }
+            .menu-toggle { display: flex; }
+            .header-cta { display: none; }
+            .mobile-cta { display: block !important; margin-top: 2rem; width: 100%; }
             
-            /* Typography */
-            h1 { font-size: 2.8rem; }
-            .hero-section { padding-top: 1rem; min-height: auto; margin-bottom: 3rem; }
-            .founder-wrapper { padding: 1.5rem; }
+            /* Stacking effect reset for mobile simplicity */
+            .summary-grid, .founder-grid, .skills-grid, .projects-grid { grid-template-columns: 1fr; }
             
-            /* Timeline - Vertical Mobile Fix */
-            .river-line { display: none; } /* Hide complex line */
-            .timeline-step { 
-                flex-direction: column; padding-left: 1.5rem; margin-bottom: 2rem; 
-                border-left: 2px solid var(--border); margin-left: 10px;
-            }
+            /* Timeline Mobile */
+            .river-line { display: none; }
+            .timeline-step { flex-direction: column; padding-left: 1.5rem; border-left: 2px solid var(--border); margin-left: 10px; gap: 0.5rem; }
             .timeline-dot { left: 10px; transform: translateX(-50%); top: 0; }
-            .timeline-content { 
-                width: 100%; margin: 0 !important; text-align: left !important; 
-                opacity: 1; transform: none; 
-            }
+            .timeline-content { width: 100%; margin: 0 !important; text-align: left !important; }
             
-            /* Grids */
-            .framework-grid, .projects-grid, .skills-grid, .projects-row { 
-                grid-template-columns: 1fr; 
-            }
-            
-            /* Modal */
-            .modal-container { width: 100%; height: 100%; border: none; border-radius: 0; }
-            .modal-iframe-wrapper { min-height: 250px; }
-            .modal-details { padding: 1.5rem; }
-            
-            /* Documents */
-            .doc-item { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
-            .doc-item button { width: 100%; text-align: left; margin-top: 0.5rem; }
+            h1 { font-size: 2.8rem; }
+            .hero-section { min-height: auto; padding-top: 1rem; }
         }
+        @media (min-width: 769px) { .mobile-cta { display: none; } }
     </style>
 </head>
 <body>
 
-    <!-- HEADER -->
     <header>
         <div class="container nav-inner">
-            <div class="logo" onclick="app.navigate('accueil')">ROMAN<span class="text-accent">.</span></div>
-            
-            <!-- Burger Icon -->
+            <div class="logo" onclick="app.nav('accueil')">ROMAN<span class="text-accent">.</span></div>
             <div class="menu-toggle" onclick="app.toggleMenu()">
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
+                <div class="bar"></div><div class="bar"></div><div class="bar"></div>
             </div>
-
             <nav class="nav-links" id="nav-menu">
-                <div class="nav-link active" onclick="app.navigate('accueil')">Accueil</div>
-                <div class="nav-link" onclick="app.navigate('parcours')">Parcours</div>
-                <div class="nav-link" onclick="app.navigate('competences')">Compétences</div>
-                <div class="nav-link" onclick="app.navigate('projets')">Projets</div>
-                <div class="nav-link" onclick="app.navigate('contact')">Contact</div>
-                <!-- Mobile only CTA inside menu -->
-                <div style="margin-top: 2rem; display: block; width: 100%; text-align: center;" class="mobile-cta">
-                    <a href="mailto:roman@email.com" class="btn-outline" style="display: inline-block;">Me contacter</a>
-                </div>
+                <div class="nav-link active" onclick="app.nav('accueil')">Accueil</div>
+                <div class="nav-link" onclick="app.nav('parcours')">Parcours</div>
+                <div class="nav-link" onclick="app.nav('competences')">Compétences</div>
+                <div class="nav-link" onclick="app.nav('projets')">Projets</div>
+                <div class="nav-link" onclick="app.nav('contact')">Contact</div>
+                <div class="mobile-cta"><a href="mailto:roman@email.com" class="btn-outline">Me contacter</a></div>
             </nav>
-            
-            <a href="mailto:roman@email.com" class="btn-outline header-cta" style="padding: 0.5rem 1rem; font-size: 0.8rem;">Me contacter</a>
+            <a href="mailto:roman@email.com" class="btn-outline header-cta" style="font-size:0.8rem; padding: 0.5rem 1rem;">Me contacter</a>
         </div>
     </header>
 
     <main>
-
-        <!-- PAGE 1: ACCUEIL -->
+        <!-- PAGE ACCUEIL -->
         <section id="accueil" class="page-view active">
             <div class="container">
-                <!-- HERO -->
+                <!-- Hero -->
                 <div class="hero-section">
                     <div class="hero-tags">
-                        <span>BUT Techniques de Commercialisation</span>
-                        <span>S5 - Parcours Entrepreneurial</span>
+                        <span>BUT Techniques de Commercialisation</span><span>S5 - Parcours Entrepreneurial</span>
                     </div>
                     <h1>Roman <br>Layani-Pujol</h1>
-                    <h3 class="text-accent" style="margin-top: 1.5rem; font-style: italic;">"De l’idée au business viable"</h3>
-                    <p class="text-muted" style="max-width: 600px; margin: 1rem auto; font-size: 1.1rem;">
-                        Je ne me contente pas de projets scolaires. Je construis des systèmes, valide des marchés et cherche la performance.
+                    <h3 class="text-accent" style="margin-top:1.5rem; font-style:italic; font-weight:400;">"De l’idée au business viable"</h3>
+                    <p class="text-muted" style="max-width:650px; margin:1rem auto 2rem auto;">
+                        Business Developer & Entrepreneur. Je ne me contente pas de projets scolaires : je construis des systèmes, valide des marchés et cherche la performance.
                     </p>
-
-                    <div style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
-                        <button onclick="app.navigate('projets')" class="btn-primary">Voir les preuves</button>
-                        <button onclick="app.navigate('competences')" class="btn-outline">Mon profil</button>
+                    <div style="display:flex; gap:1rem; flex-wrap:wrap; justify-content:center;">
+                        <button onclick="app.nav('projets')" class="btn-primary">Voir les preuves</button>
+                        <button onclick="app.nav('competences')" class="btn-outline">Mon profil</button>
                     </div>
                 </div>
 
-                <!-- ENTREPRENEURIAL FRAMEWORK -->
-                <div class="framework-grid">
-                    <div class="framework-card">
-                        <div class="step-num">01</div>
-                        <div class="step-title">Explorer</div>
-                        <p class="text-muted text-small">Identifier le problème, analyser la cible et la concurrence.</p>
-                    </div>
-                    <div class="framework-card">
-                        <div class="step-num">02</div>
-                        <div class="step-title">Valider</div>
-                        <p class="text-muted text-small">Étude de marché, tests terrain, preuve de concept.</p>
-                    </div>
-                    <div class="framework-card">
-                        <div class="step-num">03</div>
-                        <div class="step-title">Construire</div>
-                        <p class="text-muted text-small">Structuration de l'offre, pricing, supports de vente.</p>
-                    </div>
-                    <div class="framework-card">
-                        <div class="step-num">04</div>
-                        <div class="step-title">Accélérer</div>
-                        <p class="text-muted text-small">Acquisition, automatisation, scaling et performance.</p>
-                    </div>
-                </div>
-
-                <!-- FOUNDER SECTION -->
-                <div class="founder-wrapper">
-                    <h2 style="margin-bottom: 0.5rem;">Fondateur & Entrepreneur <span class="text-accent">.</span></h2>
-                    <h3 style="font-size: 1.4rem; color: var(--text-muted);">Fondateur de solutions digitales – Digitag</h3>
-                    <p class="text-muted" style="margin: 1rem 0;">
-                        Développement de solutions basées sur les technologies QR Code et NFC pour transformer des usages physiques en expériences digitales mesurables.
-                    </p>
-
-                    <div class="projects-row">
-                        <!-- Digitag Pro -->
-                        <div class="founder-project">
-                            <span class="badge pro">B2B / Growth</span>
-                            <h4 style="margin-top: 1rem; font-size: 1.4rem;">Digitag Pro</h4>
-                            <p class="text-muted text-small" style="margin: 0.5rem 0 1.5rem;">Solutions d'avis clients et cartes de visite connectées NFC.</p>
-                            <a href="https://digitagpro.fr" target="_blank" class="btn-outline" style="width:100%; display:block;">Visiter le site</a>
+                <!-- En Bref -->
+                <div class="summary-block">
+                    <div class="summary-grid">
+                        <div>
+                            <h3 class="text-accent">En Bref</h3>
+                            <p class="text-muted">Cible : Business Developer Digital / Chef de projet / Entrepreneur.</p>
+                            <p class="text-muted" style="margin-top:0.5rem">Valeur ajoutée : Analyse → Stratégie → Exécution → Mesure.</p>
                         </div>
-                        
-                        <!-- Digitag Memory -->
-                        <div class="founder-project">
-                            <span class="badge entrepreneur">B2C / Innovation</span>
-                            <h4 style="margin-top: 1rem; font-size: 1.4rem;">Digitag Memory</h4>
-                            <p class="text-muted text-small" style="margin: 0.5rem 0 1.5rem;">Plaques connectées pour mémoire numérique et transmission.</p>
-                            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                                <a href="https://digitagmemory.fr" target="_blank" class="btn-outline" style="flex:1;">Site</a>
-                                <button onclick="app.open3DModal()" class="btn-primary" style="padding: 0.8rem 1rem; flex:1;">Démo 3D</button>
+                        <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+                            <div style="background:var(--bg-card); padding:1rem; border:1px solid var(--border); flex:1;">
+                                <div class="text-accent" style="font-weight:700;">CHROMA</div>
+                                <div class="text-muted" style="font-size:0.8rem;">Marque & Produit</div>
+                            </div>
+                            <div style="background:var(--bg-card); padding:1rem; border:1px solid var(--border); flex:1;">
+                                <div class="text-accent" style="font-weight:700;">Digitag</div>
+                                <div class="text-muted" style="font-size:0.8rem;">Tech & Growth</div>
+                            </div>
+                            <div style="background:var(--bg-card); padding:1rem; border:1px solid var(--border); flex:1;">
+                                <div class="text-accent" style="font-weight:700;">BeReal</div>
+                                <div class="text-muted" style="font-size:0.8rem;">Audit SAÉ</div>
                             </div>
                         </div>
+                    </div>
+                </div>
+
+                <!-- Preuves Rapides -->
+                <div class="proofs-grid">
+                    <div class="proof-item"><span class="proof-num">20+</span><span class="proof-label">Projets Marketing/Com</span></div>
+                    <div class="proof-item"><span class="proof-num">2</span><span class="proof-label">Ventures (Digitag/CHROMA)</span></div>
+                    <div class="proof-item"><span class="proof-num">SAÉ</span><span class="proof-label">Audit Stratégique Complet</span></div>
+                    <div class="proof-item"><span class="proof-num">Terrain</span><span class="proof-label">Négociation & Closing</span></div>
+                </div>
+
+                <!-- Framework -->
+                <div class="framework-grid">
+                    <div class="framework-card"><div class="text-accent">01. Explorer</div><p class="text-muted" style="font-size:0.85rem">Problème, cible, concurrence.</p></div>
+                    <div class="framework-card"><div class="text-accent">02. Valider</div><p class="text-muted" style="font-size:0.85rem">Étude de marché, tests terrain.</p></div>
+                    <div class="framework-card"><div class="text-accent">03. Construire</div><p class="text-muted" style="font-size:0.85rem">Offre, pricing, supports.</p></div>
+                    <div class="framework-card"><div class="text-accent">04. Accélérer</div><p class="text-muted" style="font-size:0.85rem">Acquisition, automatisation.</p></div>
+                </div>
+
+                <!-- Projet Phare CHROMA -->
+                <div class="showcase-chroma">
+                    <h2 style="margin-bottom:0.5rem">CHROMA</h2>
+                    <p class="text-muted" style="margin-bottom:2rem">Marque textile thermochromique. De l'étude de marché au business plan.</p>
+                    <div style="display:flex; gap:1rem; flex-wrap:wrap; justify-content:center;">
+                        <button onclick="app.openModal(2)" class="btn-outline">Voir le Benchmark</button>
+                        <button onclick="app.openModal(9)" class="btn-outline">Voir l'Étude de Marché</button>
+                    </div>
+                </div>
+
+                <!-- Fondateur -->
+                <div class="founder-wrapper">
+                    <h3>Fondateur de solutions digitales – Digitag</h3>
+                    <p class="text-muted" style="margin-bottom:2rem">Solutions QR Code et NFC pour transformer des usages physiques en expériences digitales.</p>
+                    <div class="founder-grid">
+                        <div style="padding:1.5rem; background:#000; border:1px solid var(--border);">
+                            <span class="badge pro">B2B / Growth</span>
+                            <h4 style="margin:0.5rem 0;">Digitag Pro</h4>
+                            <p class="text-muted" style="font-size:0.9rem; margin-bottom:1rem;">Génération d'avis & cartes connectées.</p>
+                            <a href="https://digitagpro.fr" target="_blank" class="text-accent uppercase" style="font-size:0.8rem">Visiter le site →</a>
+                        </div>
+                        <div style="padding:1.5rem; background:#000; border:1px solid var(--border);">
+                            <span class="badge entrepreneur">B2C / Innovation</span>
+                            <h4 style="margin:0.5rem 0;">Digitag Memory</h4>
+                            <p class="text-muted" style="font-size:0.9rem; margin-bottom:1rem;">Mémoire numérique par objet connecté.</p>
+                            <div style="display:flex; gap:1rem; align-items:center;">
+                                <a href="https://digitagmemory.fr" target="_blank" class="text-accent uppercase" style="font-size:0.8rem">Site →</a>
+                                <button onclick="app.open3DModal()" class="btn-primary" style="padding:0.4rem 1rem; font-size:0.8rem;">Démo 3D</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sommaire -->
+                <div class="summary-nav">
+                    <div class="summary-link" onclick="app.nav('competences')">
+                        <h4>Compétences</h4><span class="text-muted" style="font-size:0.8rem">Grille BUT S5</span>
+                    </div>
+                    <div class="summary-link" onclick="app.nav('projets')">
+                        <h4>Projets</h4><span class="text-muted" style="font-size:0.8rem">Livrables & Preuves</span>
+                    </div>
+                    <div class="summary-link" onclick="app.nav('contact')">
+                        <h4>Documents</h4><span class="text-muted" style="font-size:0.8rem">CV & Portfolio PDF</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- PAGE 2: PARCOURS -->
+        <!-- PAGE PARCOURS -->
         <section id="parcours" class="page-view">
             <div class="container">
-                <h2>Mon Parcours <span class="text-accent">.</span></h2>
+                <h2 class="text-accent">Mon Parcours</h2>
+                <p class="text-muted" style="margin-bottom:4rem; text-align:center;">Cette frise montre la progression de mes compétences du cadre académique vers des projets entrepreneuriaux réels.</p>
                 <div class="timeline-container">
                     <div class="timeline-line"></div>
-                    <div id="timeline-steps">
-                        <!-- Injected by JS -->
+                    <div id="timeline-steps"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE COMPETENCES -->
+        <section id="competences" class="page-view">
+            <div class="container">
+                <h2 class="text-accent">Compétences BUT S5</h2>
+                <div class="skills-grid" id="skills-grid"></div>
+            </div>
+        </section>
+
+        <!-- PAGE PROJETS -->
+        <section id="projets" class="page-view">
+            <div class="container">
+                <h2 class="text-accent">Projets & Réalisations</h2>
+                <div class="filters">
+                    <button class="filter-btn active" onclick="app.filter('all', this)">Tout</button>
+                    <button class="filter-btn" onclick="app.filter('Entrepreneurial', this)">Entrepreneuriat</button>
+                    <button class="filter-btn" onclick="app.filter('Digital', this)">Digital & Audit</button>
+                    <button class="filter-btn" onclick="app.filter('Marketing', this)">Marketing</button>
+                    <button class="filter-btn" onclick="app.filter('Communication', this)">Communication</button>
+                </div>
+                <div class="projects-grid" id="projects-grid"></div>
+            </div>
+        </section>
+
+        <!-- PAGE CONTACT -->
+        <section id="contact" class="page-view">
+            <div class="container" style="text-align:center; min-height:60vh; display:flex; flex-direction:column; justify-content:center;">
+                <h2>Prêt à collaborer ?</h2>
+                <p class="text-muted" style="margin-bottom:3rem;">À la recherche d'une alternance ou d'un défi entrepreneurial.</p>
+                <div style="display:flex; gap:1.5rem; justify-content:center; margin-bottom:4rem;">
+                    <a href="mailto:roman@email.com" class="btn-primary">roman.layani@email.com</a>
+                    <a href="#" class="btn-outline">LinkedIn</a>
+                </div>
+                <div style="text-align:left; max-width:600px; margin:0 auto; background:var(--bg-card); padding:2rem; border:1px solid var(--border);">
+                    <h4 class="text-accent" style="margin-bottom:1rem;">Téléchargements</h4>
+                    <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--border); padding:0.5rem 0;">
+                        <span class="text-muted">CV - Roman Layani-Pujol.pdf</span><span class="uppercase" style="cursor:pointer; color:#fff;">Voir</span>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; padding:0.5rem 0;">
+                        <span class="text-muted">Portfolio Synthétique.pdf</span><span class="uppercase" style="cursor:pointer; color:#fff;">Voir</span>
                     </div>
                 </div>
             </div>
         </section>
-
-        <!-- PAGE 3: COMPETENCES -->
-        <section id="competences" class="page-view">
-            <div class="container">
-                <h2>Compétences BUT S5 <span class="text-accent">.</span></h2>
-                <div class="skills-grid" id="skills-grid">
-                    <!-- Injected by JS -->
-                </div>
-            </div>
-        </section>
-
-        <!-- PAGE 4: PROJETS -->
-        <section id="projets" class="page-view">
-            <div class="container">
-                <h2>Projets & Réalisations <span class="text-accent">.</span></h2>
-                
-                <div class="filters">
-                    <button class="filter-btn active" onclick="app.filter('all', this)">Tout</button>
-                    <button class="filter-btn" onclick="app.filter('Marketing', this)">Marketing</button>
-                    <button class="filter-btn" onclick="app.filter('Communication', this)">Communication</button>
-                    <button class="filter-btn" onclick="app.filter('Digital', this)">Digital</button>
-                    <button class="filter-btn" onclick="app.filter('Entrepreneurial', this)">Entrepreneuriat</button>
-                </div>
-
-                <div class="projects-grid" id="projects-grid">
-                    <!-- Injected by JS -->
-                </div>
-            </div>
-        </section>
-
-        <!-- PAGE 5: CONTACT & DOCUMENTS -->
-        <section id="contact" class="page-view">
-            <div class="container" style="text-align: center; display: flex; flex-direction: column; justify-content: center; min-height: 60vh;">
-                <h2>Prêt à collaborer ?</h2>
-                <p class="text-muted" style="margin-bottom: 3rem; font-size: 1.2rem;">
-                    À la recherche d'opportunités en développement commercial, stratégie digitale ou entrepreneuriat.
-                </p>
-                
-                <div style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-bottom: 4rem;">
-                    <a href="mailto:roman@email.com" class="btn-primary">Me contacter par email</a>
-                    <a href="#" class="btn-outline">LinkedIn</a>
-                </div>
-
-                <div class="doc-list">
-                    <h4 class="text-accent" style="text-align: left; margin-bottom: 1rem;">Documents à télécharger</h4>
-                    <ul style="color: var(--text-muted); text-align: left;">
-                        <li class="doc-item">
-                            <div>
-                                <span style="display: block; color: #fff; font-weight: 500;">CV - Roman Layani-Pujol</span>
-                                <span class="text-muted text-small">PDF • Mis à jour Jan 2026</span>
-                            </div>
-                            <button class="uppercase text-accent">Télécharger</button>
-                        </li>
-                        <li class="doc-item">
-                            <div>
-                                <span style="display: block; color: #fff; font-weight: 500;">Portfolio Synthétique (Jury)</span>
-                                <span class="text-muted text-small">PDF • Version imprimable</span>
-                            </div>
-                            <button class="uppercase text-accent">Télécharger</button>
-                        </li>
-                         <li class="doc-item">
-                            <div>
-                                <span style="display: block; color: #fff; font-weight: 500;">Lettre de recommandation</span>
-                                <span class="text-muted text-small">Stage Immobilier</span>
-                            </div>
-                            <button class="uppercase text-accent">Télécharger</button>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
     </main>
-    
+
     <footer>
-        <p class="text-muted text-small">© 2026 Roman Layani-Pujol • Portfolio BUT Techniques de Commercialisation</p>
+        <div class="container" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem; padding:2rem 0; font-size:0.8rem; color:var(--text-muted);">
+            <div>© 2026 Roman Layani-Pujol</div>
+            <div>BUT Techniques de Commercialisation S5 - Parcours Entrepreneurial</div>
+            <div>Portfolio hébergé sur GitHub Pages</div>
+        </div>
     </footer>
 
     <!-- MODAL -->
     <div class="modal-overlay" id="main-modal" onclick="app.closeModal(event)">
         <div class="modal-container">
             <div class="modal-header">
-                <h3 id="modal-title" style="font-size:1.1rem; margin:0;">Titre du projet</h3>
+                <h4 id="modal-title" style="margin:0">Titre</h4>
                 <button class="close-modal" onclick="app.closeModal(event)">&times;</button>
             </div>
             <div class="modal-body">
-                <div class="modal-iframe-wrapper">
+                <div class="modal-iframe-box">
                     <iframe id="modal-iframe" class="modal-iframe" src="" allowfullscreen></iframe>
                 </div>
-                <div class="modal-details">
-                    <div style="margin-bottom: 1rem;" id="modal-badges"></div>
-                    <p class="text-muted" id="modal-desc">Description...</p>
-                    <div style="margin-top: 1.5rem;" id="modal-tags"></div>
-                    <div style="margin-top: 2rem;">
-                        <a id="modal-external-link" href="#" target="_blank" class="btn-primary" style="width:100%;">Ouvrir en plein écran ↗</a>
-                    </div>
+                <div class="modal-footer">
+                    <div id="modal-tags" style="margin-bottom:1rem;"></div>
+                    <p id="modal-desc" class="text-muted" style="font-size:0.9rem; margin-bottom:1.5rem;"></p>
+                    <a id="modal-link" href="#" target="_blank" class="btn-primary" style="width:100%;">Ouvrir en plein écran ↗</a>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- JAVASCRIPT -->
     <script>
         const data = {
             timeline: [
-                { title: "Fondations", desc: "Début BUT TC. Marketing & Vente.", type: "start" },
-                { title: "Terrain", desc: "Stage Immobilier. Négociation & Closing.", type: "stage" },
-                { title: "Stratégie", desc: "Analyse BeReal. Prise de recul.", type: "academic" },
-                { title: "Entrepreneur", desc: "Lancement Digitag & CHROMA.", type: "entrepreneur" },
-                { title: "Futur", desc: "Business Dev & Scaling.", type: "future" }
+                { title: "Fondations (BUT TC)", desc: "Acquisition des bases : marketing fondamental, techniques de vente, gestion." },
+                { title: "Compétences (SAÉ)", desc: "Application sur cas réels : Audit BeReal, Études de marché." },
+                { title: "Terrain (Stage)", desc: "Confrontation au réel : Prospection immobilière, négociation, closing." },
+                { title: "Construction (Projets)", desc: "Création de valeur : Lancement de CHROMA et Digitag." },
+                { title: "Projection", desc: "Objectif : Business Developer Digital / Entrepreneur." }
             ],
             skills: [
-                { title: "Conduire des actions marketing", level: 3, proofs: "BeReal, Étude Vêtements" },
-                { title: "Vendre une offre commerciale", level: 3, proofs: "Digitag Pro, Négociation Immo" },
-                { title: "Communiquer l'offre", level: 3, proofs: "Flyers RE/MAX, Soleil Sud" },
-                { title: "Gérer une activité digitale", level: 3, proofs: "Audit GioiA, Digitag Memory" },
-                { title: "Développer projet e-business", level: 4, proofs: "CHROMA, Digitag" },
-                { title: "Analyser l'environnement", level: 3, proofs: "Benchmark CHROMA, K-Way" }
+                { title: "Conduire des actions marketing", level: 3, text: "Capacité à analyser un marché (PESTEL, SWOT), définir des cibles (Personas) et structurer un mix marketing cohérent. Preuve par l'étude quantitative pour la marque de vêtements." },
+                { title: "Vendre une offre commerciale", level: 3, text: "Maîtrise des cycles de vente longs et courts. Expérience terrain en agence immobilière (prospection, mandat, visite). Création d'argumentaires pour Digitag Pro." },
+                { title: "Communiquer l'offre", level: 3, text: "Conception de supports (Flyers, Chartes) respectant une identité visuelle. Stratégie de communication 360° (ex: Soleil Sud, Veja)." },
+                { title: "Gérer une activité digitale", level: 3, text: "Audit complet de présence numérique (GioiA, BeReal). Compréhension des leviers d'acquisition et de l'UX (K-Way)." },
+                { title: "Développer un projet e-business", level: 4, text: "Vision entrepreneuriale globale : de l'idéation au Business Model Canvas. Lancement de projets concrets (CHROMA, Digitag) avec MVP." },
+                { title: "Analyser l'environnement", level: 3, text: "Veille concurrentielle et stratégique (Benchmarks). Capacité à synthétiser des données complexes pour la prise de décision." }
             ],
             projects: [
-                // MARKETING & STRAT
-                { id: 1, title: "Analyse BeReal (SAÉ)", cat: "Digital", type: "SAÉ", link: "https://www.canva.com/design/DAG-Ul5ZY5E/4YaYcUlUPnaT9WHLDUJyBg/view", desc: "Diagnostic complet de la croissance de BeReal.", skills: ["Audit", "Stratégie"] },
-                { id: 2, title: "Benchmark CHROMA", cat: "Entrepreneurial", type: "Entrepreneurial", link: "https://www.canva.com/design/DAGcQ-J9Xos/bghCpOkCMo0dagJwm3gACQ/view", desc: "Analyse concurrentielle pour lancement de marque.", skills: ["Benchmark", "Business"] },
-                { id: 3, title: "Étude Marché Vêtements", cat: "Marketing", type: "Scolaire", link: "https://www.canva.com/design/DAGWkEHzSIg/RrjDI0WuwxL3GZiBpqCgdg/view", desc: "Étude quantitative et qualitative.", skills: ["Data", "Sondage"] },
-                { id: 4, title: "Analyse E-commerce K-Way", cat: "Marketing", type: "Scolaire", link: "https://www.canva.com/design/DAGfADJ7pK8/1gaH3eVoidephzvcQvKuxA/view", desc: "Analyse UX et parcours client.", skills: ["UX", "E-commerce"] },
-
-                // COM
-                { id: 5, title: "Flyer RE/MAX Immo", cat: "Communication", type: "Stage", link: "https://www.canva.com/design/DAG-UrTp4Ik/EMIuPlTXNiORD0yH7osrcw/view", desc: "Support de prospection terrain.", skills: ["Print", "Commercial"] },
-                { id: 6, title: "Plan Com Soleil Sud", cat: "Communication", type: "Scolaire", link: "https://www.canva.com/design/DAGi21ltfpc/LCWCQrPx6oNt5SSQcKCiGg/view", desc: "Stratégie de communication globale.", skills: ["Stratégie Com"] },
-                { id: 7, title: "Rapport Radio SNEE", cat: "Communication", type: "Scolaire", link: "https://www.canva.com/design/DAG-Umrkbz8/WmK2SUCIAfeh6sabw-SAsQ/view", desc: "Communication orale et média.", skills: ["Oral", "Média"] },
-                { id: 8, title: "Infographie Slow Marketing", cat: "Marketing", type: "Scolaire", link: "https://www.canva.com/design/DAGbmOtRCwM/usvEBZfKyVN9MGhKd3AZxA/view", desc: "Synthèse visuelle d'un concept.", skills: ["Design", "Synthèse"] },
-
-                // AUDIT & DIGITAL
-                { id: 9, title: "Audit Digital GioiA", cat: "Digital", type: "Pro", link: "https://www.canva.com/design/DAG-Uhz-9aM/MYAlyebATOSuqP7blmOlpw/view", desc: "Audit et recommandations digitales.", skills: ["Audit", "SEO"] },
-                { id: 10, title: "Stratégie Jardin de Zazou", cat: "Digital", type: "Scolaire", link: "https://www.canva.com/design/DAG7xw_R1uM/wC9JJn3jyDkqACq-k9qEhQ/view", desc: "Rapport de développement digital.", skills: ["Stratégie", "Web"] },
+                // DIGITAL & AUDIT
+                { id: 1, title: "Analyse BeReal", cat: "Digital", type: "SAÉ", link: "https://www.canva.com/design/DAG-Ul5ZY5E/4YaYcUlUPnaT9WHLDUJyBg/view", desc: "Audit stratégique de la croissance de BeReal.", skills: ["Audit", "Stratégie"] },
+                { id: 5, title: "Audit GioiA Aperitivo", cat: "Digital", type: "Pro", link: "https://www.canva.com/design/DAG-Uhz-9aM/MYAlyebATOSuqP7blmOlpw/view", desc: "Diagnostic digital et recommandations opérationnelles.", skills: ["Audit", "SEO"] },
+                { id: 14, title: "Stratégie Jardin de Zazou", cat: "Digital", type: "Scolaire", link: "https://www.canva.com/design/DAG7xw_R1uM/wC9JJn3jyDkqACq-k9qEhQ/view", desc: "Plan de développement digital complet.", skills: ["Web", "Stratégie"] },
+                { id: 21, title: "Analyse K-Way", cat: "Digital", type: "Scolaire", link: "https://www.canva.com/design/DAGfADJ7pK8/1gaH3eVoidephzvcQvKuxA/view", desc: "Analyse UX/UI et parcours client e-commerce.", skills: ["UX", "E-commerce"] },
 
                 // ENTREPRENEURIAL
-                { id: 11, title: "Charte SUÈNH", cat: "Entrepreneurial", type: "Branding", link: "https://www.canva.com/design/DAGZEHUiy_Y/ZM3fNtnR3snuqxnE9VNjhA/view", desc: "Identité visuelle de marque.", skills: ["Design", "Brand"] },
-                { id: 12, title: "Charte Graine Time", cat: "Entrepreneurial", type: "Branding", link: "https://www.canva.com/design/DAGQ2agTW2o/roBnrOiz4h0_nZaATWEYXQ/view", desc: "Identité visuelle projet entrepreneurial.", skills: ["Design"] }
+                { id: 2, title: "Benchmark CHROMA", cat: "Entrepreneurial", type: "Perso", link: "https://www.canva.com/design/DAGcQ-J9Xos/bghCpOkCMo0dagJwm3gACQ/view", desc: "Étude concurrentielle pour la marque de textile thermochromique.", skills: ["Benchmark", "Business"] },
+                { id: 17, title: "Charte SUÈNH", cat: "Entrepreneurial", type: "Branding", link: "https://www.canva.com/design/DAGZEHUiy_Y/ZM3fNtnR3snuqxnE9VNjhA/view", desc: "Identité visuelle de marque.", skills: ["Design", "Brand"] },
+                { id: 18, title: "Charte Graine Time", cat: "Entrepreneurial", type: "Branding", link: "https://www.canva.com/design/DAGQ2agTW2o/roBnrOiz4h0_nZaATWEYXQ/view", desc: "Identité visuelle projet entrepreneurial.", skills: ["Design"] },
+
+                // MARKETING
+                { id: 9, title: "Étude Vêtements Visionnaires", cat: "Marketing", type: "Scolaire", link: "https://www.canva.com/design/DAGWkEHzSIg/RrjDI0WuwxL3GZiBpqCgdg/view", desc: "Étude de marché quantitative et qualitative.", skills: ["Data", "Sondage"] },
+                { id: 4, title: "Lancement Boisson", cat: "Marketing", type: "Devoir", link: "https://www.canva.com/design/DAGgxxsPT6s/jHajMVYKM8CcYPjAwDSy0Q/view", desc: "Cas pédagogique : lancement produit boisson naturelle.", skills: ["Mix Mkt"] },
+                { id: 7, title: "Infographie Slow Mkt", cat: "Marketing", type: "Scolaire", link: "https://www.canva.com/design/DAGbmOtRCwM/usvEBZfKyVN9MGhKd3AZxA/view", desc: "Synthèse visuelle d'un concept marketing.", skills: ["Synthèse"] },
+                { id: 8, title: "Jeu de Société", cat: "Marketing", type: "Scolaire", link: "https://www.canva.com/design/DAGy4RH5kPE/wXqGJhTMJA0ISbg9KwRsYA/view", desc: "Infographie : 5 étapes de commercialisation.", skills: ["Synthèse"] },
+
+                // COMMUNICATION
+                { id: 6, title: "Flyer RE/MAX", cat: "Communication", type: "Stage", link: "https://www.canva.com/design/DAG-UrTp4Ik/EMIuPlTXNiORD0yH7osrcw/view", desc: "Support de prospection immobilière.", skills: ["Print", "Vente"] },
+                { id: 3, title: "Rapport SNEE", cat: "Communication", type: "Scolaire", link: "https://www.canva.com/design/DAG-Umrkbz8/WmK2SUCIAfeh6sabw-SAsQ/view", desc: "Rapport sur une émission radio.", skills: ["Média"] },
+                { id: 16, title: "Soleil Sud Com", cat: "Communication", type: "Scolaire", link: "https://www.canva.com/design/DAGi21ltfpc/LCWCQrPx6oNt5SSQcKCiGg/view", desc: "Plan de communication et supports.", skills: ["Stratégie Com"] },
+                { id: 13, title: "Stratégie Veja", cat: "Communication", type: "Scolaire", link: "https://www.canva.com/design/DAG7AdZHu28/PgAdCqwlU9W1g4ZDNM2ctA/view", desc: "Analyse de la communication réseaux sociaux.", skills: ["Social Media"] },
+                { id: 15, title: "Charte Camping", cat: "Communication", type: "Scolaire", link: "https://www.canva.com/design/DAG1wE1JUC4/L-O9vMTp2KJaZIeGTibAXw/view", desc: "Charte éditoriale complète.", skills: ["Brand Voice"] },
+                { id: 10, title: "Affiche JPO", cat: "Communication", type: "Devoir", link: "https://www.canva.com/design/DAF3cGuN5d0/nNmjQkCNIGdxs89XRtAJ_A/view", desc: "Exercice de création graphique.", skills: ["Graphisme"] },
+                { id: 11, title: "Kakemono JPO", cat: "Communication", type: "Devoir", link: "https://www.canva.com/design/DAF3mD_LHD0/etvlyOsOexpnIiRlAhnvYg/view", desc: "Déclinaison grand format.", skills: ["Graphisme"] },
+                { id: 12, title: "Flyer JPO (EN)", cat: "Communication", type: "Devoir", link: "https://www.canva.com/design/DAF3mPmRk08/zLKW2K9s6ermcftxl1OKBg/view", desc: "Support en anglais.", skills: ["Anglais"] },
+                { id: 120, title: "Flyer Petit Bateau", cat: "Communication", type: "Exercice", link: "https://www.canva.com/design/DAG-U65lPgU/jBBTVlgIqZjNzueNWg1Zbg/view", desc: "Exercice respect charte graphique.", skills: ["Graphisme"] },
+                
+                // AUTRES
+                { id: 19, title: "Charte Réseaux TC", cat: "Communication", type: "Scolaire", link: "https://www.canva.com/design/DAF2UL6QMwg/0pzuUz_o6BE3ioGj_bCh2w/view", desc: "Création de logo et charte.", skills: ["Design"] },
+                { id: 20, title: "Event Tesla", cat: "Marketing", type: "Scolaire", link: "https://www.canva.com/design/DAGe3yN9UHs/IIjXNZLn1gMOWEiwdPb_wg/view", desc: "Organisation événement corporate.", skills: ["Event"] },
+                { id: 22, title: "Maison d'Édition", cat: "Communication", type: "Scolaire", link: "https://www.canva.com/design/DAGiL3UE4qQ/R7rXaJWe_XKigYL21NGNiA/view", desc: "Rapport stratégique.", skills: ["Stratégie"] }
             ]
         };
 
@@ -649,94 +578,80 @@
                 app.renderTimeline();
                 app.renderSkills();
                 app.renderProjects('all');
-                app.handleHash(); // Initial Load
-                
-                // Hash change listener
+                app.handleHash();
                 window.addEventListener('hashchange', app.handleHash);
             },
 
-            // NAVIGATION LOGIC
-            navigate: (pageId) => {
-                window.location.hash = pageId;
+            nav: (id) => {
+                window.location.hash = id;
+                app.toggleMenu(false); // Close mobile menu if open
             },
 
-            // MENU MOBILE TOGGLE
-            toggleMenu: () => {
+            toggleMenu: (force) => {
                 const nav = document.getElementById('nav-menu');
                 const toggle = document.querySelector('.menu-toggle');
-                nav.classList.toggle('active');
-                toggle.classList.toggle('active');
+                const isOpen = nav.classList.contains('active');
+                if (force === false || isOpen) {
+                    nav.classList.remove('active');
+                    toggle.classList.remove('active');
+                } else {
+                    nav.classList.add('active');
+                    toggle.classList.add('active');
+                }
             },
 
             handleHash: () => {
                 const hash = window.location.hash.replace('#', '') || 'accueil';
-                
-                // Hide all pages, Show active
                 document.querySelectorAll('.page-view').forEach(p => p.classList.remove('active'));
-                const activePage = document.getElementById(hash);
-                if(activePage) activePage.classList.add('active');
+                const target = document.getElementById(hash);
+                if(target) target.classList.add('active');
                 
-                // Close Mobile Menu on Nav
-                document.getElementById('nav-menu').classList.remove('active');
-                document.querySelector('.menu-toggle').classList.remove('active');
-
-                // Update Nav Active State
-                document.querySelectorAll('.nav-link').forEach(link => {
-                    link.classList.remove('active');
-                    if(link.getAttribute('onclick').includes(hash)) {
-                        link.classList.add('active');
-                    }
+                document.querySelectorAll('.nav-link').forEach(l => {
+                    l.classList.remove('active');
+                    if(l.getAttribute('onclick').includes(hash)) l.classList.add('active');
                 });
-
-                window.scrollTo(0, 0);
+                window.scrollTo(0,0);
             },
 
-            // RENDER TIMELINE
             renderTimeline: () => {
-                const container = document.getElementById('timeline-steps');
-                container.innerHTML = data.timeline.map((step, i) => `
+                document.getElementById('timeline-steps').innerHTML = data.timeline.map(s => `
                     <div class="timeline-step">
                         <div class="timeline-dot"></div>
                         <div class="timeline-content">
-                            <h4 class="text-accent">${step.title}</h4>
-                            <p class="text-muted text-small">${step.desc}</p>
+                            <h4 class="text-accent">${s.title}</h4>
+                            <p class="text-muted" style="font-size:0.9rem;">${s.desc}</p>
                         </div>
                     </div>
                 `).join('');
             },
 
-            // RENDER SKILLS
             renderSkills: () => {
-                const container = document.getElementById('skills-grid');
-                container.innerHTML = data.skills.map(s => {
+                document.getElementById('skills-grid').innerHTML = data.skills.map(s => {
                     let bars = '';
-                    for(let i=1; i<=4; i++) bars += `<div class="level-dot ${i<=s.level?'filled':''}"></div>`;
+                    for(let i=1; i<=4; i++) bars += `<div class="level-segment ${i<=s.level?'filled':''}"></div>`;
                     return `
                     <div class="skill-card">
                         <h3>${s.title}</h3>
                         <div class="level-bar">${bars}</div>
-                        <p class="text-muted text-small" style="margin-top:0.5rem">Preuves : ${s.proofs}</p>
+                        <p class="text-muted" style="font-size:0.9rem; margin-top:1rem;">${s.text}</p>
                     </div>`;
                 }).join('');
             },
 
-            // RENDER PROJECTS
             renderProjects: (filter) => {
-                const container = document.getElementById('projects-grid');
                 const filtered = filter === 'all' ? data.projects : data.projects.filter(p => p.cat === filter);
-                
-                container.innerHTML = filtered.map(p => `
+                document.getElementById('projects-grid').innerHTML = filtered.map(p => `
                     <div class="project-card" onclick="app.openModal(${p.id})">
-                        <div class="project-thumb">
-                            <iframe class="card-iframe" src="${p.link}?embed" loading="lazy" title="${p.title}"></iframe>
-                            <div class="card-cta">VOIR LE DÉTAIL</div>
+                        <div class="project-preview">
+                            <iframe class="card-iframe" src="${p.link}?embed" loading="lazy"></iframe>
+                            <div class="project-cta">VOIR LE PROJET</div>
                         </div>
-                        <div class="project-info">
-                            <div><span class="badge ${p.type === 'Entrepreneurial' ? 'entrepreneur' : 'sae'}">${p.type}</span></div>
-                            <h4 style="margin: 0.5rem 0;">${p.title}</h4>
-                            <p class="text-muted text-small">${p.desc}</p>
-                            <div class="project-tags">
-                                ${p.skills.map(s => `<span class="tag">${s}</span>`).join('')}
+                        <div style="padding:1.5rem; flex:1; display:flex; flex-direction:column;">
+                            <div><span class="badge ${p.type==='SAÉ'?'sae':p.type==='Stage'?'pro':p.type==='Perso'?'entrepreneur':'scolaire'}">${p.type}</span></div>
+                            <h4 style="margin:0.5rem 0;">${p.title}</h4>
+                            <p class="text-muted" style="font-size:0.85rem;">${p.desc}</p>
+                            <div style="margin-top:auto; padding-top:1rem;">
+                                ${p.skills.map(s => `<span class="badge" style="border-color:#444; color:#888;">${s}</span>`).join('')}
                             </div>
                         </div>
                     </div>
@@ -749,30 +664,25 @@
                 app.renderProjects(cat);
             },
 
-            // MODAL LOGIC
             openModal: (id) => {
                 const p = data.projects.find(x => x.id === id);
                 if(!p) return;
-
                 document.getElementById('modal-title').innerText = p.title;
                 document.getElementById('modal-iframe').src = `${p.link}?embed`;
                 document.getElementById('modal-desc').innerText = p.desc;
-                document.getElementById('modal-badges').innerHTML = `<span class="badge sae">${p.cat}</span> <span class="badge pro">${p.type}</span>`;
-                document.getElementById('modal-tags').innerHTML = p.skills.map(s => `<span class="badge" style="border-color:#555">${s}</span>`).join('');
-                document.getElementById('modal-external-link').href = p.link;
+                document.getElementById('modal-link').href = p.link;
+                document.getElementById('modal-tags').innerHTML = `<span class="badge ${p.type==='SAÉ'?'sae':p.type==='Stage'?'pro':'scolaire'}">${p.type}</span> <span class="badge pro">${p.cat}</span>`;
                 
                 document.getElementById('main-modal').classList.add('active');
                 document.body.style.overflow = 'hidden';
             },
 
             open3DModal: () => {
-                document.getElementById('modal-title').innerText = "Démo 3D Interactive - Digitag Memory";
+                document.getElementById('modal-title').innerText = "Démo 3D Digitag";
                 document.getElementById('modal-iframe').src = "https://digitagmemory.github.io/3D/";
-                document.getElementById('modal-desc').innerText = "Utilisez la souris pour manipuler l'objet 3D en temps réel.";
-                document.getElementById('modal-badges').innerHTML = `<span class="badge entrepreneur">Innovation</span>`;
-                document.getElementById('modal-tags').innerHTML = "";
-                document.getElementById('modal-external-link').href = "https://digitagmemory.github.io/3D/";
-                
+                document.getElementById('modal-desc').innerText = "Interaction 3D temps réel.";
+                document.getElementById('modal-link').href = "https://digitagmemory.github.io/3D/";
+                document.getElementById('modal-tags').innerHTML = `<span class="badge entrepreneur">Innovation</span>`;
                 document.getElementById('main-modal').classList.add('active');
                 document.body.style.overflow = 'hidden';
             },
@@ -780,7 +690,7 @@
             closeModal: (e) => {
                 if(e && e.target !== e.currentTarget && !e.target.classList.contains('close-modal')) return;
                 document.getElementById('main-modal').classList.remove('active');
-                document.getElementById('modal-iframe').src = ""; 
+                document.getElementById('modal-iframe').src = "";
                 document.body.style.overflow = '';
             }
         };
