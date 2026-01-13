@@ -1,151 +1,718 @@
-AGIS COMME : un Lead Front-End Developer + UI/UX Designer premium (site portfolio haut de gamme) + expert en structuration de portfolios académiques BUT Techniques de Commercialisation (S5).
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio Roman Layani-Pujol - Entrepreneur & Business Developer. BUT TC S5.">
+    <title>Roman Layani-Pujol | Portfolio Entrepreneur</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-OBJECTIF : générer UN SEUL FICHIER “index.html” complet pour un portfolio à héberger sur GitHub Pages. Ce fichier doit :
-- Intégrer tous les liens de projets Canva fournis ci-dessous
-- Répondre explicitement à la Grille Portfolio BUT 3-S5 par compétences métier/transversales
-- Être premium, luxe, minimaliste, responsive, performant, accessible
-- Simuler plusieurs “pages” avec navigation *SPA* (sans rechargement)
-- Utiliser des sections qui se superposent (l’effet voulu où quand on scrolle, la nouvelle section passe au-dessus sans changer visuellement de niveau)
-- Intégrer un parcours interactif pour “Mon Parcours” (points / étapes qui s’illuminent au survol / clic)
-- Fournir des animations sobres et élégantes (fade, translate, hover premium)
-- Prévoir des visionneuses scroll internes ou modals pour les documents PDF/Canva
+    <style>
+        /* * 1. DESIGN SYSTEM 
+         */
+        :root {
+            /* Palette Premium Dark */
+            --bg-body: #0D0D0D;
+            --bg-card: #161616;
+            --bg-glass: rgba(22, 22, 22, 0.95);
+            --text-main: #F6F5F3;
+            --text-muted: #A0A0A0;
+            --accent: #C9A66B; /* Or Premium */
+            --accent-dim: rgba(201, 166, 107, 0.15);
+            --border: #2A2A2A;
+            
+            /* Typography */
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+            
+            /* Layout */
+            --header-height: 80px;
+            --max-width: 1200px;
+            
+            /* Transitions */
+            --ease-premium: cubic-bezier(0.2, 1, 0.2, 1);
+        }
 
-PALETTE & TYPO :
-- Palette : noir profond #0D0D0D / blanc cassé #F6F5F3 / accents or clair #C9A66B ou bleu nuit #1D3557
-- Typo premium : serif élégante pour titres + sans-serif sobre pour texte
+        /* * 2. RESET & BASE 
+         */
+        * { box-sizing: border-box; margin: 0; padding: 0; outline: none; }
+        
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
 
-CONTENU & DONNÉES À INTÉGRER :
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        button { cursor: pointer; border: none; background: none; font-family: inherit; color: inherit; }
+        ul { list-style: none; }
+        
+        h1, h2, h3, h4 { font-family: var(--font-heading); color: #fff; font-weight: 600; }
+        h1 { font-size: clamp(3rem, 5vw, 5.5rem); line-height: 1.1; letter-spacing: -0.02em; }
+        h2 { font-size: clamp(2rem, 3vw, 3.5rem); margin-bottom: 2rem; position: relative; display: inline-block; }
+        h2::after { 
+            content: ''; position: absolute; left: 0; bottom: -5px; width: 40px; height: 2px; background: var(--accent); 
+        }
+        
+        h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
 
-IDENTITÉ :
-BUT Techniques de Commercialisation – S5 – Parcours Entrepreneurial  
-Roman Layani-Pujol  
-Accroche : “De l’idée au business viable — Je ne me contente pas de projets scolaires. Je construis des systèmes, valide des marchés et cherche la performance.”
+        .text-accent { color: var(--accent); }
+        .text-muted { color: var(--text-muted); }
+        .uppercase { text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.75rem; font-weight: 600; }
+        
+        /* Badges */
+        .badge {
+            display: inline-block; padding: 4px 10px; border-radius: 4px; 
+            font-size: 0.7rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;
+            border: 1px solid var(--border); margin-right: 5px; margin-bottom: 5px;
+        }
+        .badge.entrepreneur { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
+        .badge.sae { border-color: #6366f1; color: #a5a6f6; background: rgba(99, 102, 241, 0.1); }
+        .badge.pro { border-color: #10b981; color: #6ee7b7; background: rgba(16, 185, 129, 0.1); }
 
----
+        /* * 3. UI COMPONENTS 
+         */
+        .btn-primary {
+            background: var(--accent); color: #000; padding: 1rem 2.5rem; 
+            font-weight: 600; border-radius: 2px; transition: 0.3s var(--ease-premium);
+            display: inline-block;
+        }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(201, 166, 107, 0.2); background: #fff; }
+        
+        .btn-outline {
+            border: 1px solid var(--border); color: var(--text-muted); padding: 0.8rem 2rem; 
+            border-radius: 2px; transition: 0.3s;
+        }
+        .btn-outline:hover { border-color: var(--accent); color: #fff; }
 
-## PROJETS AVEC LIENS CANVA (À INTÉGRER TEL QUEL)
+        .container {
+            width: 90%; max-width: var(--max-width); margin: 0 auto;
+        }
 
-### 🟨 Projets Marketing & Stratégie
-- **BeReal – Analyse d’une activité digitale (SAÉ)** : https://www.canva.com/design/DAG-Ul5ZY5E/4YaYcUlUPnaT9WHLDUJyBg/view
-- **Benchmark CHROMA (entrepreneurial)** : https://www.canva.com/design/DAGcQ-J9Xos/bghCpOkCMo0dagJwm3gACQ/view
-- **Étude de marché – Marque de vêtements visionnaire** : https://www.canva.com/design/DAGWkEHzSIg/RrjDI0WuwxL3GZiBpqCgdg/view
-- **Analyse site e-commerce K-Way** : https://www.canva.com/design/DAGfADJ7pK8/1gaH3eVoidephzvcQvKuxA/view
+        /* * 4. HEADER & NAV 
+         */
+        header {
+            position: fixed; top: 0; left: 0; width: 100%; height: var(--header-height);
+            background: rgba(13, 13, 13, 0.95); backdrop-filter: blur(12px);
+            z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.05);
+            display: flex; align-items: center;
+        }
+        .nav-inner {
+            display: flex; justify-content: space-between; align-items: center; width: 100%;
+        }
+        .logo { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; cursor: pointer; }
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-link { 
+            font-size: 0.9rem; color: var(--text-muted); position: relative; padding: 5px 0; cursor: pointer;
+        }
+        .nav-link::after {
+            content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px;
+            background: var(--accent); transition: 0.3s var(--ease-premium);
+        }
+        .nav-link:hover, .nav-link.active { color: #fff; }
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
 
-### 🟨 Projets Communication
-- **Rapport émission radio – SNEE** : https://www.canva.com/design/DAG-Umrkbz8/WmK2SUCIAfeh6sabw-SAsQ/view
-- **Flyer RE/MAX Accès Immobilier** : https://www.canva.com/design/DAG-UrTp4Ik/EMIuPlTXNiORD0yH7osrcw/view
-- **Flyer Soleil Sud Com** : https://www.canva.com/design/DAGGbdOKom4/45N8COlTRLNwcd6yDGNNHg/view
-- **Plan de communication – Soleil Sud Com** : https://www.canva.com/design/DAGi21ltfpc/LCWCQrPx6oNt5SSQcKCiGg/view
-- **Affiche Journée Portes Ouvertes – IUT Castres** (devoir) : https://www.canva.com/design/DAF3cGuN5d0/nNmjQkCNIGdxs89XRtAJ_A/view
-- **Kakemono JPO – IUT Castres** (devoir) : https://www.canva.com/design/DAF3mD_LHD0/etvlyOsOexpnIiRlAhnvYg/view
-- **Flyer JPO en anglais – IUT Castres** (devoir) : https://www.canva.com/design/DAF3mPmRk08/zLKW2K9s6ermcftxl1OKBg/view
-- **Flyer exercice – Petit Bateau** : https://www.canva.com/design/DAG-U65lPgU/jBBTVlgIqZjNzueNWg1Zbg/view
+        /* * 5. PAGE STRUCTURE (MULTI-PAGE SIMULATION) 
+         */
+        main { 
+            margin-top: var(--header-height); 
+            flex-grow: 1;
+            position: relative;
+        }
+        
+        /* Pages are hidden by default, only active is shown */
+        .page-view {
+            display: none;
+            padding: 4rem 0;
+            min-height: calc(100vh - var(--header-height));
+            animation: fadeIn 0.6s var(--ease-premium);
+        }
+        
+        .page-view.active {
+            display: block;
+        }
 
-### 🟨 Projets Stratégie & Contenu
-- **Infographie – Slow Marketing** : https://www.canva.com/design/DAGbmOtRCwM/usvEBZfKyVN9MGhKd3AZxA/view
-- **Infographie – 5 étapes pour commercialiser & protéger un jeu** : https://www.canva.com/design/DAGy4RH5kPE/wXqGJhTMJA0ISbg9KwRsYA/view
-- **Charte éditoriale – Le Camping des Grottes** : https://www.canva.com/design/DAG1wE1JUC4/L-O9vMTp2KJaZIeGTibAXw/view
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-### 🟨 Projets Audit & Digital
-- **Rapport d’audit digital – GioiA Aperitivo** : https://www.canva.com/design/DAG-Uhz-9aM/MYAlyebATOSuqP7blmOlpw/view
-- **Rapport stratégique de développement digital – Le Jardin de Zazou** : https://www.canva.com/design/DAG7xw_R1uM/wC9JJn3jyDkqACq-k9qEhQ/view
+        /* * 6. HERO & ACCUEIL CONTENT 
+         */
+        .hero-section {
+            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+            min-height: 60vh; margin-bottom: 4rem;
+        }
+        
+        .hero-tags { margin-bottom: 2rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+        .hero-tags span { 
+            border: 1px solid var(--border); padding: 5px 15px; border-radius: 50px; 
+            font-size: 0.8rem; color: var(--text-muted);
+        }
 
-### 🟨 Projets Entrepreneuriaux & Branding
-- **Charte graphique SUÈNH** : https://www.canva.com/design/DAGZEHUiy_Y/ZM3fNtnR3snuqxnE9VNjhA/view
-- **Charte graphique Graine Time** : https://www.canva.com/design/DAGQ2agTW2o/roBnrOiz4h0_nZaATWEYXQ/view
-- **Charte graphique Logo Réseaux TC France** : https://www.canva.com/design/DAF2UL6QMwg/0pzuUz_o6BE3ioGj_bCh2w/view
-- **Projet académique – Organisation de l’événement corporate Tesla (10 ans Europe)** : https://www.canva.com/design/DAGe3yN9UHs/IIjXNZLn1gMOWEiwdPb_wg/view
-- **Rapport – Maison d’Édition** : https://www.canva.com/design/DAGiL3UE4qQ/R7rXaJWe_XKigYL21NGNiA/view
+        /* Framework Grid */
+        .framework-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem; margin-top: 3rem; width: 100%;
+        }
+        .framework-card {
+            background: rgba(255,255,255,0.02); border: 1px solid var(--border);
+            padding: 2rem; text-align: left; transition: 0.3s;
+        }
+        .framework-card:hover { border-color: var(--accent); background: rgba(255,255,255,0.04); }
+        .step-num { font-size: 3rem; color: var(--border); font-family: var(--font-heading); line-height: 1; }
+        .step-title { color: var(--accent); font-size: 1.2rem; margin: 0.5rem 0; font-weight: 600; }
 
----
+        /* * 7. FOUNDER SECTION (ON HOME) 
+         */
+        .founder-wrapper {
+            background: var(--bg-card); border: 1px solid var(--border); 
+            padding: 3rem; position: relative; overflow: hidden;
+            border-radius: 4px; margin-top: 4rem;
+        }
+        .founder-wrapper::before {
+            content: ''; position: absolute; left: 0; top: 0; width: 4px; height: 100%; background: var(--accent);
+        }
+        .projects-row {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin-top: 2rem;
+        }
+        .founder-project {
+            background: #0D0D0D; padding: 2rem; border: 1px solid var(--border); transition: 0.3s;
+        }
+        .founder-project:hover { border-color: var(--accent); }
 
-## LIENS ENTREPRENEURIAUX EXTERNES
+        /* * 8. TIMELINE (PARCOURS) 
+         */
+        .timeline-container {
+            position: relative; max-width: 900px; margin: 4rem auto;
+        }
+        .timeline-line {
+            position: absolute; left: 50%; top: 0; bottom: 0; width: 2px;
+            background: linear-gradient(to bottom, var(--border), var(--accent), var(--border));
+            transform: translateX(-50%);
+        }
+        .timeline-step {
+            position: relative; margin-bottom: 4rem; width: 100%; display: flex; justify-content: center;
+        }
+        .timeline-dot {
+            width: 16px; height: 16px; background: var(--bg-body); border: 2px solid var(--accent);
+            border-radius: 50%; position: absolute; left: 50%; top: 0; transform: translateX(-50%);
+            z-index: 2; transition: 0.3s; cursor: pointer;
+        }
+        .timeline-step:hover .timeline-dot { background: var(--accent); box-shadow: 0 0 15px var(--accent); transform: translateX(-50%) scale(1.3); }
+        
+        .timeline-content {
+            width: 45%; background: var(--bg-card); padding: 1.5rem; border: 1px solid var(--border);
+            border-radius: 4px; transition: 0.3s; opacity: 0.8;
+        }
+        .timeline-step:hover .timeline-content { opacity: 1; transform: translateY(-5px); border-color: var(--accent); }
+        
+        .timeline-step:nth-child(odd) .timeline-content { margin-right: auto; text-align: right; margin-right: 55%; }
+        .timeline-step:nth-child(even) .timeline-content { margin-left: auto; text-align: left; margin-left: 55%; }
 
-- **Digitag Pro – Site** : https://digitagpro.fr  
-- **Digitag Memory – Site** : https://digitagmemory.fr  
-- **Digitag Memory – Mockup 3D** : https://digitagmemorygithub.io/3D/
+        /* * 9. SKILLS GRID 
+         */
+        .skills-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem;
+        }
+        .skill-card {
+            background: var(--bg-card); padding: 2rem; border: 1px solid var(--border);
+        }
+        .level-bar { display: flex; gap: 4px; margin: 1rem 0; }
+        .level-dot { height: 4px; flex: 1; background: #333; }
+        .level-dot.filled { background: var(--accent); }
 
----
+        /* * 10. PROJECTS GRID 
+         */
+        .filters { display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 3rem; }
+        .filter-btn {
+            padding: 0.5rem 1.5rem; border: 1px solid var(--border); color: var(--text-muted);
+            border-radius: 50px; font-size: 0.85rem; transition: 0.3s;
+        }
+        .filter-btn:hover, .filter-btn.active { border-color: var(--accent); color: #fff; background: rgba(255,255,255,0.05); }
 
-## STRUCTURE DU SITE (NAVIGATION SPA)
+        .projects-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 2rem;
+        }
+        .project-card {
+            background: var(--bg-card); border: 1px solid var(--border); overflow: hidden;
+            transition: 0.4s var(--ease-premium); display: flex; flex-direction: column;
+            cursor: pointer; position: relative;
+        }
+        .project-card:hover { transform: translateY(-5px); border-color: var(--accent); }
 
-SECTIONS (ordre) :
-1. Hero (identité + accroche)
-2. Thèse entrepreneuriale + Framework “Explorer → Valider → Construire → Accélérer”
-3. Fondateur & Projets Entrepreneuriaux (Digitag Pro & Memory)
-4. Mon Parcours (interactive timeline)
-5. Compétences métier – BUT S5
-6. Projets (grid filtrable)
-7. Documents (visionneuses scroll internes / modals)
-8. Contact
-9. Footer
+        .project-thumb {
+            height: 220px; background: #111; position: relative; overflow: hidden;
+        }
+        .card-iframe {
+            width: 100%; height: 100%; border: none; pointer-events: none; opacity: 0.8; transition: 0.4s;
+        }
+        .project-card:hover .card-iframe { opacity: 1; scale: 1.02; }
+        
+        .project-info { padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; }
+        .project-tags { margin-top: auto; display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem; }
+        .tag { font-size: 0.7rem; border: 1px solid #333; padding: 2px 6px; color: #888; }
+        
+        .card-cta {
+            position: absolute; bottom: 0; left: 0; width: 100%; padding: 0.8rem;
+            background: var(--accent); color: #000; text-align: center;
+            font-weight: 600; transform: translateY(100%); transition: 0.3s var(--ease-premium);
+        }
+        .project-card:hover .card-cta { transform: translateY(0); }
 
----
+        /* * 11. DOCUMENTS & CONTACT 
+         */
+        .doc-list {
+            max-width: 700px; margin: 0 auto 4rem auto;
+            background: var(--bg-card); border: 1px solid var(--border); padding: 2rem;
+        }
+        .doc-item {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 0; border-bottom: 1px solid var(--border);
+        }
+        .doc-item:last-child { border-bottom: none; }
 
-## COMPORTEMENTS UX / DÉTAILS PREMIUM
+        /* * 12. MODAL 
+         */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95); z-index: 2000;
+            display: flex; justify-content: center; align-items: center;
+            opacity: 0; pointer-events: none; transition: 0.3s; backdrop-filter: blur(5px);
+        }
+        .modal-overlay.active { opacity: 1; pointer-events: all; }
+        
+        .modal-container {
+            width: 95%; max-width: 1000px; height: 90vh; background: var(--bg-card);
+            border: 1px solid var(--border); display: flex; flex-direction: column;
+        }
+        .modal-header {
+            padding: 1.5rem; border-bottom: 1px solid var(--border);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .close-modal { font-size: 2rem; line-height: 1; transition: 0.3s; }
+        .close-modal:hover { color: var(--accent); }
+        .modal-body {
+            flex-grow: 1; overflow-y: auto; padding: 0; display: flex; flex-direction: column;
+        }
+        .modal-iframe-wrapper {
+            width: 100%; flex-grow: 1; min-height: 400px; background: #000;
+        }
+        .modal-iframe { width: 100%; height: 100%; border: none; }
+        .modal-details { padding: 2rem; background: var(--bg-card); border-top: 1px solid var(--border); }
 
-NAVIGATION
-- Sticky header
-- Navigation ancrée + hash
-- SPA : sections se superposent à l’entrée (aucun « jump »)
+        /* * 13. FOOTER 
+         */
+        footer {
+            text-align: center; padding: 2rem; border-top: 1px solid var(--border); 
+            background: var(--bg-body); margin-top: auto;
+        }
 
-SCROLL
-- Effet parallax léger + fade/translate
-- Sections suivantes passent AU DESSUS de la précédente
-- Progress indicator discret
+        /* * 14. RESPONSIVE 
+         */
+        @media (max-width: 768px) {
+            .nav-links { display: none; } /* Mobile: Ideally add hamburger */
+            .river-line { left: 20px; transform: none; }
+            .timeline-dot { left: 20px; transform: translateX(-50%); }
+            .timeline-step { flex-direction: column; padding-left: 50px; }
+            .timeline-content { width: 100%; margin: 0 !important; text-align: left !important; }
+            h1 { font-size: 3rem; }
+            .founder-grid, .projects-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
 
-MON PARCOURS (INTERACTIF)
-- Timeline horizontale sur desktop / verticale sur mobile
-- Points cliquables → ajout d’un bloc de détail
-- Survol : illumination + tooltip
-- Thèmes : Fondations → Terrain → Stratégie → Entrepreneur → Futur
+    <!-- HEADER -->
+    <header>
+        <div class="container nav-inner">
+            <div class="logo" onclick="app.navigate('accueil')">ROMAN<span class="text-accent">.</span></div>
+            <nav class="nav-links">
+                <div class="nav-link active" onclick="app.navigate('accueil')">Accueil</div>
+                <div class="nav-link" onclick="app.navigate('parcours')">Parcours</div>
+                <div class="nav-link" onclick="app.navigate('competences')">Compétences</div>
+                <div class="nav-link" onclick="app.navigate('projets')">Projets</div>
+                <div class="nav-link" onclick="app.navigate('contact')">Contact</div>
+            </nav>
+            <a href="mailto:roman@email.com" class="btn-outline" style="padding: 0.5rem 1rem; font-size: 0.8rem;">Me contacter</a>
+        </div>
+    </header>
 
-PROJETS
-- Grille filtrable (par compétence / catégorie)
-- Chaque projet : image Canva embedded ou iframe scroll interne
-- Modal premium : détails projet, compétences liées, source (SAÉ / Stage / Entrepreneurial)
+    <main>
 
-DOCUMENTS / PDF
-- Visionneuse scroll interne
-- Bouton “Télécharger fichier PDF”
+        <!-- PAGE 1: ACCUEIL -->
+        <section id="accueil" class="page-view active">
+            <div class="container">
+                <!-- HERO -->
+                <div class="hero-section">
+                    <div class="hero-tags">
+                        <span>BUT Techniques de Commercialisation</span>
+                        <span>S5 - Parcours Entrepreneurial</span>
+                    </div>
+                    <h1>Roman <br>Layani-Pujol</h1>
+                    <h3 class="text-accent" style="margin-top: 1.5rem; font-style: italic;">"De l’idée au business viable"</h3>
+                    <p class="text-muted" style="max-width: 600px; margin: 1rem auto; font-size: 1.1rem;">
+                        Je ne me contente pas de projets scolaires. Je construis des systèmes, valide des marchés et cherche la performance.
+                    </p>
 
-ANIMATIONS
-- Fade in / translate up léger
-- Hover premium : cards lift + bande accent
-- Transitions section : translateY + opacity
+                    <div style="margin-top: 2rem; display: flex; gap: 1rem;">
+                        <button onclick="app.navigate('projets')" class="btn-primary">Voir les preuves</button>
+                        <button onclick="app.navigate('competences')" class="btn-outline">Mon profil</button>
+                    </div>
+                </div>
 
-TYPOGRAPHIE & COULEUR
-- Google Fonts : serif élégant + sans-serif moderne
-- Black, off-white & accent (or ou bleu nuit)
-- Contrastes adaptés accessibilité
+                <!-- ENTREPRENEURIAL FRAMEWORK -->
+                <div class="framework-grid">
+                    <div class="framework-card">
+                        <div class="step-num">01</div>
+                        <div class="step-title">Explorer</div>
+                        <p class="text-muted text-small">Identifier le problème, analyser la cible et la concurrence.</p>
+                    </div>
+                    <div class="framework-card">
+                        <div class="step-num">02</div>
+                        <div class="step-title">Valider</div>
+                        <p class="text-muted text-small">Étude de marché, tests terrain, preuve de concept.</p>
+                    </div>
+                    <div class="framework-card">
+                        <div class="step-num">03</div>
+                        <div class="step-title">Construire</div>
+                        <p class="text-muted text-small">Structuration de l'offre, pricing, supports de vente.</p>
+                    </div>
+                    <div class="framework-card">
+                        <div class="step-num">04</div>
+                        <div class="step-title">Accélérer</div>
+                        <p class="text-muted text-small">Acquisition, automatisation, scaling et performance.</p>
+                    </div>
+                </div>
 
----
+                <!-- FOUNDER SECTION -->
+                <div class="founder-wrapper">
+                    <h2 style="margin-bottom: 0.5rem;">Fondateur & Entrepreneur <span class="text-accent">.</span></h2>
+                    <h3 style="font-size: 1.4rem; color: var(--text-muted);">Fondateur de solutions digitales – Digitag</h3>
+                    <p class="text-muted" style="margin: 1rem 0;">
+                        Développement de solutions basées sur les technologies QR Code et NFC pour transformer des usages physiques en expériences digitales mesurables.
+                    </p>
 
-## DONNÉES (TOUS PROJETS)
-Crée un **objet JSON intégré** dans <script> avec :
-- id
-- title
-- type (SAÉ / Stage / Entrepreneurial / Scolaire / Communication / Digital)
-- link (Canva / site externe)
-- skills (array de compétences BUT)
-- category tags
-- description (courte)
+                    <div class="projects-row">
+                        <!-- Digitag Pro -->
+                        <div class="founder-project">
+                            <span class="badge pro">B2B / Growth</span>
+                            <h4 style="margin-top: 1rem; font-size: 1.4rem;">Digitag Pro</h4>
+                            <p class="text-muted text-small" style="margin: 0.5rem 0 1.5rem;">Solutions d'avis clients et cartes de visite connectées NFC.</p>
+                            <a href="https://digitagpro.fr" target="_blank" class="btn-outline">Visiter le site</a>
+                        </div>
+                        
+                        <!-- Digitag Memory -->
+                        <div class="founder-project">
+                            <span class="badge entrepreneur">B2C / Innovation</span>
+                            <h4 style="margin-top: 1rem; font-size: 1.4rem;">Digitag Memory</h4>
+                            <p class="text-muted text-small" style="margin: 0.5rem 0 1.5rem;">Plaques connectées pour mémoire numérique et transmission.</p>
+                            <div style="display: flex; gap: 1rem;">
+                                <a href="https://digitagmemory.fr" target="_blank" class="btn-outline">Site</a>
+                                <button onclick="app.open3DModal()" class="btn-primary" style="padding: 0.8rem 1.5rem;">Démo 3D</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
----
+        <!-- PAGE 2: PARCOURS -->
+        <section id="parcours" class="page-view">
+            <div class="container">
+                <h2>Mon Parcours <span class="text-accent">.</span></h2>
+                <div class="timeline-container">
+                    <div class="timeline-line"></div>
+                    <div id="timeline-steps">
+                        <!-- Injected by JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
 
-## LIVRABLE FINAL ATTENDU
-Tu dois générer un **seul index.html complet** :
-- HTML + CSS <style> + JS <script>
-- Données JSON intégrées
-- Iframes pour Canva
-- Interactions SPA + timeline
-- Conformité Grille Portfolio BUT 3-S5
+        <!-- PAGE 3: COMPETENCES -->
+        <section id="competences" class="page-view">
+            <div class="container">
+                <h2>Compétences BUT S5 <span class="text-accent">.</span></h2>
+                <div class="skills-grid" id="skills-grid">
+                    <!-- Injected by JS -->
+                </div>
+            </div>
+        </section>
 
----
+        <!-- PAGE 4: PROJETS -->
+        <section id="projets" class="page-view">
+            <div class="container">
+                <h2>Projets & Réalisations <span class="text-accent">.</span></h2>
+                
+                <div class="filters">
+                    <button class="filter-btn active" onclick="app.filter('all', this)">Tout</button>
+                    <button class="filter-btn" onclick="app.filter('Marketing', this)">Marketing</button>
+                    <button class="filter-btn" onclick="app.filter('Communication', this)">Communication</button>
+                    <button class="filter-btn" onclick="app.filter('Digital', this)">Digital</button>
+                    <button class="filter-btn" onclick="app.filter('Entrepreneurial', this)">Entrepreneuriat</button>
+                </div>
 
-## CONSIGNES DE LIVRAISON
-- Fournir **uniquement** le contenu de index.html, prêt à copier-coller
-- Pas d’assets externes requis (Google Fonts toléré)
-- Instructions GitHub Pages (max 5 lignes) à la fin
+                <div class="projects-grid" id="projects-grid">
+                    <!-- Injected by JS -->
+                </div>
+            </div>
+        </section>
 
-COMMENCE MAINTENANT.
+        <!-- PAGE 5: CONTACT & DOCUMENTS -->
+        <section id="contact" class="page-view">
+            <div class="container" style="text-align: center; display: flex; flex-direction: column; justify-content: center; min-height: 60vh;">
+                <h2>Prêt à collaborer ?</h2>
+                <p class="text-muted" style="margin-bottom: 3rem; font-size: 1.2rem;">
+                    À la recherche d'opportunités en développement commercial, stratégie digitale ou entrepreneuriat.
+                </p>
+                
+                <div style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-bottom: 4rem;">
+                    <a href="mailto:roman@email.com" class="btn-primary">Me contacter par email</a>
+                    <a href="#" class="btn-outline">LinkedIn</a>
+                </div>
+
+                <div class="doc-list">
+                    <h4 class="text-accent" style="text-align: left; margin-bottom: 1rem;">Documents à télécharger</h4>
+                    <ul style="color: var(--text-muted); text-align: left;">
+                        <li class="doc-item">
+                            <div>
+                                <span style="display: block; color: #fff; font-weight: 500;">CV - Roman Layani-Pujol</span>
+                                <span class="text-muted text-small">PDF • Mis à jour Jan 2026</span>
+                            </div>
+                            <button class="uppercase text-accent">Télécharger</button>
+                        </li>
+                        <li class="doc-item">
+                            <div>
+                                <span style="display: block; color: #fff; font-weight: 500;">Portfolio Synthétique (Jury)</span>
+                                <span class="text-muted text-small">PDF • Version imprimable</span>
+                            </div>
+                            <button class="uppercase text-accent">Télécharger</button>
+                        </li>
+                         <li class="doc-item">
+                            <div>
+                                <span style="display: block; color: #fff; font-weight: 500;">Lettre de recommandation</span>
+                                <span class="text-muted text-small">Stage Immobilier</span>
+                            </div>
+                            <button class="uppercase text-accent">Télécharger</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    
+    <footer>
+        <p class="text-muted text-small">© 2026 Roman Layani-Pujol • Portfolio BUT Techniques de Commercialisation</p>
+    </footer>
+
+    <!-- MODAL -->
+    <div class="modal-overlay" id="main-modal" onclick="app.closeModal(event)">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3 id="modal-title">Titre du projet</h3>
+                <button class="close-modal" onclick="app.closeModal(event)">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-iframe-wrapper">
+                    <iframe id="modal-iframe" class="modal-iframe" src="" allowfullscreen></iframe>
+                </div>
+                <div class="modal-details">
+                    <div style="margin-bottom: 1rem;" id="modal-badges"></div>
+                    <p class="text-muted" id="modal-desc">Description...</p>
+                    <div style="margin-top: 1.5rem;" id="modal-tags"></div>
+                    <div style="margin-top: 2rem;">
+                        <a id="modal-external-link" href="#" target="_blank" class="btn-primary">Ouvrir en plein écran ↗</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        const data = {
+            timeline: [
+                { title: "Fondations", desc: "Début BUT TC. Marketing & Vente.", type: "start" },
+                { title: "Terrain", desc: "Stage Immobilier. Négociation & Closing.", type: "stage" },
+                { title: "Stratégie", desc: "Analyse BeReal. Prise de recul.", type: "academic" },
+                { title: "Entrepreneur", desc: "Lancement Digitag & CHROMA.", type: "entrepreneur" },
+                { title: "Futur", desc: "Business Dev & Scaling.", type: "future" }
+            ],
+            skills: [
+                { title: "Conduire des actions marketing", level: 3, proofs: "BeReal, Étude Vêtements" },
+                { title: "Vendre une offre commerciale", level: 3, proofs: "Digitag Pro, Négociation Immo" },
+                { title: "Communiquer l'offre", level: 3, proofs: "Flyers RE/MAX, Soleil Sud" },
+                { title: "Gérer une activité digitale", level: 3, proofs: "Audit GioiA, Digitag Memory" },
+                { title: "Développer projet e-business", level: 4, proofs: "CHROMA, Digitag" },
+                { title: "Analyser l'environnement", level: 3, proofs: "Benchmark CHROMA, K-Way" }
+            ],
+            projects: [
+                // MARKETING & STRAT
+                { id: 1, title: "Analyse BeReal (SAÉ)", cat: "Digital", type: "SAÉ", link: "https://www.canva.com/design/DAG-Ul5ZY5E/4YaYcUlUPnaT9WHLDUJyBg/view", desc: "Diagnostic complet de la croissance de BeReal.", skills: ["Audit", "Stratégie"] },
+                { id: 2, title: "Benchmark CHROMA", cat: "Entrepreneurial", type: "Entrepreneurial", link: "https://www.canva.com/design/DAGcQ-J9Xos/bghCpOkCMo0dagJwm3gACQ/view", desc: "Analyse concurrentielle pour lancement de marque.", skills: ["Benchmark", "Business"] },
+                { id: 3, title: "Étude Marché Vêtements", cat: "Marketing", type: "Scolaire", link: "https://www.canva.com/design/DAGWkEHzSIg/RrjDI0WuwxL3GZiBpqCgdg/view", desc: "Étude quantitative et qualitative.", skills: ["Data", "Sondage"] },
+                { id: 4, title: "Analyse E-commerce K-Way", cat: "Marketing", type: "Scolaire", link: "https://www.canva.com/design/DAGfADJ7pK8/1gaH3eVoidephzvcQvKuxA/view", desc: "Analyse UX et parcours client.", skills: ["UX", "E-commerce"] },
+
+                // COM
+                { id: 5, title: "Flyer RE/MAX Immo", cat: "Communication", type: "Stage", link: "https://www.canva.com/design/DAG-UrTp4Ik/EMIuPlTXNiORD0yH7osrcw/view", desc: "Support de prospection terrain.", skills: ["Print", "Commercial"] },
+                { id: 6, title: "Plan Com Soleil Sud", cat: "Communication", type: "Scolaire", link: "https://www.canva.com/design/DAGi21ltfpc/LCWCQrPx6oNt5SSQcKCiGg/view", desc: "Stratégie de communication globale.", skills: ["Stratégie Com"] },
+                { id: 7, title: "Rapport Radio SNEE", cat: "Communication", type: "Scolaire", link: "https://www.canva.com/design/DAG-Umrkbz8/WmK2SUCIAfeh6sabw-SAsQ/view", desc: "Communication orale et média.", skills: ["Oral", "Média"] },
+                { id: 8, title: "Infographie Slow Marketing", cat: "Marketing", type: "Scolaire", link: "https://www.canva.com/design/DAGbmOtRCwM/usvEBZfKyVN9MGhKd3AZxA/view", desc: "Synthèse visuelle d'un concept.", skills: ["Design", "Synthèse"] },
+
+                // AUDIT & DIGITAL
+                { id: 9, title: "Audit Digital GioiA", cat: "Digital", type: "Pro", link: "https://www.canva.com/design/DAG-Uhz-9aM/MYAlyebATOSuqP7blmOlpw/view", desc: "Audit et recommandations digitales.", skills: ["Audit", "SEO"] },
+                { id: 10, title: "Stratégie Jardin de Zazou", cat: "Digital", type: "Scolaire", link: "https://www.canva.com/design/DAG7xw_R1uM/wC9JJn3jyDkqACq-k9qEhQ/view", desc: "Rapport de développement digital.", skills: ["Stratégie", "Web"] },
+
+                // ENTREPRENEURIAL
+                { id: 11, title: "Charte SUÈNH", cat: "Entrepreneurial", type: "Branding", link: "https://www.canva.com/design/DAGZEHUiy_Y/ZM3fNtnR3snuqxnE9VNjhA/view", desc: "Identité visuelle de marque.", skills: ["Design", "Brand"] },
+                { id: 12, title: "Charte Graine Time", cat: "Entrepreneurial", type: "Branding", link: "https://www.canva.com/design/DAGQ2agTW2o/roBnrOiz4h0_nZaATWEYXQ/view", desc: "Identité visuelle projet entrepreneurial.", skills: ["Design"] }
+            ]
+        };
+
+        const app = {
+            init: () => {
+                app.renderTimeline();
+                app.renderSkills();
+                app.renderProjects('all');
+                app.handleHash(); // Initial Load
+                
+                // Hash change listener
+                window.addEventListener('hashchange', app.handleHash);
+            },
+
+            // NAVIGATION LOGIC
+            navigate: (pageId) => {
+                window.location.hash = pageId;
+            },
+
+            handleHash: () => {
+                const hash = window.location.hash.replace('#', '') || 'accueil';
+                
+                // Hide all pages, Show active
+                document.querySelectorAll('.page-view').forEach(p => p.classList.remove('active'));
+                const activePage = document.getElementById(hash);
+                if(activePage) activePage.classList.add('active');
+                
+                // Update Nav Active State
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.classList.remove('active');
+                    // Simple check if the click function matches (simpler than ID matching due to onclick)
+                    // We can match by text content loosely or add data attributes. 
+                    // Let's rely on adding class based on hash for visual feedback
+                    if(link.getAttribute('onclick').includes(hash)) {
+                        link.classList.add('active');
+                    }
+                });
+
+                window.scrollTo(0, 0);
+            },
+
+            // RENDER TIMELINE
+            renderTimeline: () => {
+                const container = document.getElementById('timeline-steps');
+                container.innerHTML = data.timeline.map((step, i) => `
+                    <div class="timeline-step">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h4 class="text-accent">${step.title}</h4>
+                            <p class="text-muted text-small">${step.desc}</p>
+                        </div>
+                    </div>
+                `).join('');
+            },
+
+            // RENDER SKILLS
+            renderSkills: () => {
+                const container = document.getElementById('skills-grid');
+                container.innerHTML = data.skills.map(s => {
+                    let bars = '';
+                    for(let i=1; i<=4; i++) bars += `<div class="level-dot ${i<=s.level?'filled':''}"></div>`;
+                    return `
+                    <div class="skill-card">
+                        <h3>${s.title}</h3>
+                        <div class="level-bar">${bars}</div>
+                        <p class="text-muted text-small" style="margin-top:0.5rem">Preuves : ${s.proofs}</p>
+                    </div>`;
+                }).join('');
+            },
+
+            // RENDER PROJECTS
+            renderProjects: (filter) => {
+                const container = document.getElementById('projects-grid');
+                const filtered = filter === 'all' ? data.projects : data.projects.filter(p => p.cat === filter);
+                
+                container.innerHTML = filtered.map(p => `
+                    <div class="project-card" onclick="app.openModal(${p.id})">
+                        <div class="project-thumb">
+                            <iframe class="card-iframe" src="${p.link}?embed" loading="lazy" title="${p.title}"></iframe>
+                            <div class="card-cta">VOIR LE DÉTAIL</div>
+                        </div>
+                        <div class="project-info">
+                            <div><span class="badge ${p.type === 'Entrepreneurial' ? 'entrepreneur' : 'sae'}">${p.type}</span></div>
+                            <h4 style="margin: 0.5rem 0;">${p.title}</h4>
+                            <p class="text-muted text-small">${p.desc}</p>
+                            <div class="project-tags">
+                                ${p.skills.map(s => `<span class="tag">${s}</span>`).join('')}
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            },
+
+            filter: (cat, btn) => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                app.renderProjects(cat);
+            },
+
+            // MODAL LOGIC
+            openModal: (id) => {
+                const p = data.projects.find(x => x.id === id);
+                if(!p) return;
+
+                document.getElementById('modal-title').innerText = p.title;
+                document.getElementById('modal-iframe').src = `${p.link}?embed`;
+                document.getElementById('modal-desc').innerText = p.desc;
+                document.getElementById('modal-badges').innerHTML = `<span class="badge sae">${p.cat}</span> <span class="badge pro">${p.type}</span>`;
+                document.getElementById('modal-tags').innerHTML = p.skills.map(s => `<span class="badge" style="border-color:#555">${s}</span>`).join('');
+                document.getElementById('modal-external-link').href = p.link;
+                
+                document.getElementById('main-modal').classList.add('active');
+                document.body.style.overflow = 'hidden';
+            },
+
+            open3DModal: () => {
+                document.getElementById('modal-title').innerText = "Démo 3D Interactive - Digitag Memory";
+                document.getElementById('modal-iframe').src = "https://digitagmemory.github.io/3D/";
+                document.getElementById('modal-desc').innerText = "Utilisez la souris pour manipuler l'objet 3D en temps réel.";
+                document.getElementById('modal-badges').innerHTML = `<span class="badge entrepreneur">Innovation</span>`;
+                document.getElementById('modal-tags').innerHTML = "";
+                document.getElementById('modal-external-link').href = "https://digitagmemory.github.io/3D/";
+                
+                document.getElementById('main-modal').classList.add('active');
+                document.body.style.overflow = 'hidden';
+            },
+
+            closeModal: (e) => {
+                if(e && e.target !== e.currentTarget && !e.target.classList.contains('close-modal')) return;
+                document.getElementById('main-modal').classList.remove('active');
+                document.getElementById('modal-iframe').src = ""; 
+                document.body.style.overflow = '';
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', app.init);
+    </script>
+</body>
+</html>
