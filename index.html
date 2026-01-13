@@ -39,7 +39,7 @@
 
         /* * 2. RESET & BASE 
          */
-        * { box-sizing: border-box; margin: 0; padding: 0; outline: none; }
+        * { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent; }
         
         body {
             background-color: var(--bg-body);
@@ -57,8 +57,8 @@
         ul { list-style: none; }
         
         h1, h2, h3, h4 { font-family: var(--font-heading); color: #fff; font-weight: 600; }
-        h1 { font-size: clamp(3rem, 5vw, 5.5rem); line-height: 1.1; letter-spacing: -0.02em; }
-        h2 { font-size: clamp(2rem, 3vw, 3.5rem); margin-bottom: 2rem; position: relative; display: inline-block; }
+        h1 { font-size: clamp(2.5rem, 8vw, 5.5rem); line-height: 1.1; letter-spacing: -0.02em; }
+        h2 { font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 2rem; position: relative; display: inline-block; }
         h2::after { 
             content: ''; position: absolute; left: 0; bottom: -5px; width: 40px; height: 2px; background: var(--accent); 
         }
@@ -73,7 +73,7 @@
         .badge {
             display: inline-block; padding: 4px 10px; border-radius: 4px; 
             font-size: 0.7rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;
-            border: 1px solid var(--border); margin-right: 5px; margin-bottom: 5px;
+            border: 1px solid var(--border); margin-right: 5px; margin-bottom: 5px; white-space: nowrap;
         }
         .badge.entrepreneur { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
         .badge.sae { border-color: #6366f1; color: #a5a6f6; background: rgba(99, 102, 241, 0.1); }
@@ -82,15 +82,15 @@
         /* * 3. UI COMPONENTS 
          */
         .btn-primary {
-            background: var(--accent); color: #000; padding: 1rem 2.5rem; 
+            background: var(--accent); color: #000; padding: 1rem 2rem; 
             font-weight: 600; border-radius: 2px; transition: 0.3s var(--ease-premium);
-            display: inline-block;
+            display: inline-block; text-align: center; white-space: nowrap;
         }
         .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(201, 166, 107, 0.2); background: #fff; }
         
         .btn-outline {
             border: 1px solid var(--border); color: var(--text-muted); padding: 0.8rem 2rem; 
-            border-radius: 2px; transition: 0.3s;
+            border-radius: 2px; transition: 0.3s; text-align: center; white-space: nowrap;
         }
         .btn-outline:hover { border-color: var(--accent); color: #fff; }
 
@@ -109,8 +109,10 @@
         .nav-inner {
             display: flex; justify-content: space-between; align-items: center; width: 100%;
         }
-        .logo { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; cursor: pointer; }
-        .nav-links { display: flex; gap: 2rem; }
+        .logo { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; cursor: pointer; z-index: 1002; position: relative; }
+        
+        /* Desktop Nav */
+        .nav-links { display: flex; gap: 2rem; align-items: center; }
         .nav-link { 
             font-size: 0.9rem; color: var(--text-muted); position: relative; padding: 5px 0; cursor: pointer;
         }
@@ -121,6 +123,17 @@
         .nav-link:hover, .nav-link.active { color: #fff; }
         .nav-link:hover::after, .nav-link.active::after { width: 100%; }
 
+        .header-cta { display: block; }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle { display: none; flex-direction: column; gap: 6px; cursor: pointer; z-index: 1002; }
+        .bar { width: 25px; height: 2px; background-color: var(--text-main); transition: 0.3s; }
+        
+        /* Mobile Menu Active State Animation */
+        .menu-toggle.active .bar:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); }
+        .menu-toggle.active .bar:nth-child(2) { opacity: 0; }
+        .menu-toggle.active .bar:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
+
         /* * 5. PAGE STRUCTURE (MULTI-PAGE SIMULATION) 
          */
         main { 
@@ -129,17 +142,14 @@
             position: relative;
         }
         
-        /* Pages are hidden by default, only active is shown */
         .page-view {
             display: none;
-            padding: 4rem 0;
+            padding: 2rem 0 4rem 0;
             min-height: calc(100vh - var(--header-height));
             animation: fadeIn 0.6s var(--ease-premium);
         }
         
-        .page-view.active {
-            display: block;
-        }
+        .page-view.active { display: block; }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
@@ -150,10 +160,10 @@
          */
         .hero-section {
             display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
-            min-height: 60vh; margin-bottom: 4rem;
+            min-height: 60vh; margin-bottom: 4rem; padding-top: 2rem;
         }
         
-        .hero-tags { margin-bottom: 2rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+        .hero-tags { margin-bottom: 2rem; display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; }
         .hero-tags span { 
             border: 1px solid var(--border); padding: 5px 15px; border-radius: 50px; 
             font-size: 0.8rem; color: var(--text-muted);
@@ -161,18 +171,18 @@
 
         /* Framework Grid */
         .framework-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 1.5rem; margin-top: 3rem; width: 100%;
         }
         .framework-card {
             background: rgba(255,255,255,0.02); border: 1px solid var(--border);
-            padding: 2rem; text-align: left; transition: 0.3s;
+            padding: 2rem; text-align: left; transition: 0.3s; border-radius: 4px;
         }
         .framework-card:hover { border-color: var(--accent); background: rgba(255,255,255,0.04); }
-        .step-num { font-size: 3rem; color: var(--border); font-family: var(--font-heading); line-height: 1; }
+        .step-num { font-size: 3rem; color: var(--border); font-family: var(--font-heading); line-height: 1; opacity: 0.5; }
         .step-title { color: var(--accent); font-size: 1.2rem; margin: 0.5rem 0; font-weight: 600; }
 
-        /* * 7. FOUNDER SECTION (ON HOME) 
+        /* * 7. FOUNDER SECTION 
          */
         .founder-wrapper {
             background: var(--bg-card); border: 1px solid var(--border); 
@@ -183,10 +193,10 @@
             content: ''; position: absolute; left: 0; top: 0; width: 4px; height: 100%; background: var(--accent);
         }
         .projects-row {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin-top: 2rem;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 2rem;
         }
         .founder-project {
-            background: #0D0D0D; padding: 2rem; border: 1px solid var(--border); transition: 0.3s;
+            background: #0D0D0D; padding: 2rem; border: 1px solid var(--border); transition: 0.3s; border-radius: 4px;
         }
         .founder-project:hover { border-color: var(--accent); }
 
@@ -222,10 +232,10 @@
         /* * 9. SKILLS GRID 
          */
         .skills-grid {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem;
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem;
         }
         .skill-card {
-            background: var(--bg-card); padding: 2rem; border: 1px solid var(--border);
+            background: var(--bg-card); padding: 2rem; border: 1px solid var(--border); border-radius: 4px;
         }
         .level-bar { display: flex; gap: 4px; margin: 1rem 0; }
         .level-dot { height: 4px; flex: 1; background: #333; }
@@ -233,18 +243,18 @@
 
         /* * 10. PROJECTS GRID 
          */
-        .filters { display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 3rem; }
+        .filters { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.8rem; margin-bottom: 3rem; }
         .filter-btn {
-            padding: 0.5rem 1.5rem; border: 1px solid var(--border); color: var(--text-muted);
-            border-radius: 50px; font-size: 0.85rem; transition: 0.3s;
+            padding: 0.5rem 1.2rem; border: 1px solid var(--border); color: var(--text-muted);
+            border-radius: 50px; font-size: 0.85rem; transition: 0.3s; white-space: nowrap;
         }
         .filter-btn:hover, .filter-btn.active { border-color: var(--accent); color: #fff; background: rgba(255,255,255,0.05); }
 
         .projects-grid {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 2rem;
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem;
         }
         .project-card {
-            background: var(--bg-card); border: 1px solid var(--border); overflow: hidden;
+            background: var(--bg-card); border: 1px solid var(--border); overflow: hidden; border-radius: 4px;
             transition: 0.4s var(--ease-premium); display: flex; flex-direction: column;
             cursor: pointer; position: relative;
         }
@@ -260,7 +270,7 @@
         
         .project-info { padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; }
         .project-tags { margin-top: auto; display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem; }
-        .tag { font-size: 0.7rem; border: 1px solid #333; padding: 2px 6px; color: #888; }
+        .tag { font-size: 0.7rem; border: 1px solid #333; padding: 2px 6px; color: #888; border-radius: 4px; }
         
         .card-cta {
             position: absolute; bottom: 0; left: 0; width: 100%; padding: 0.8rem;
@@ -272,11 +282,11 @@
         /* * 11. DOCUMENTS & CONTACT 
          */
         .doc-list {
-            max-width: 700px; margin: 0 auto 4rem auto;
-            background: var(--bg-card); border: 1px solid var(--border); padding: 2rem;
+            max-width: 700px; margin: 0 auto 4rem auto; width: 100%;
+            background: var(--bg-card); border: 1px solid var(--border); padding: 2rem; border-radius: 4px;
         }
         .doc-item {
-            display: flex; justify-content: space-between; align-items: center;
+            display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
             padding: 1rem 0; border-bottom: 1px solid var(--border);
         }
         .doc-item:last-child { border-bottom: none; }
@@ -293,19 +303,19 @@
         
         .modal-container {
             width: 95%; max-width: 1000px; height: 90vh; background: var(--bg-card);
-            border: 1px solid var(--border); display: flex; flex-direction: column;
+            border: 1px solid var(--border); display: flex; flex-direction: column; border-radius: 4px;
         }
         .modal-header {
             padding: 1.5rem; border-bottom: 1px solid var(--border);
             display: flex; justify-content: space-between; align-items: center;
         }
-        .close-modal { font-size: 2rem; line-height: 1; transition: 0.3s; }
+        .close-modal { font-size: 2rem; line-height: 1; transition: 0.3s; padding: 0.5rem; }
         .close-modal:hover { color: var(--accent); }
         .modal-body {
             flex-grow: 1; overflow-y: auto; padding: 0; display: flex; flex-direction: column;
         }
         .modal-iframe-wrapper {
-            width: 100%; flex-grow: 1; min-height: 400px; background: #000;
+            width: 100%; flex-grow: 1; min-height: 300px; background: #000;
         }
         .modal-iframe { width: 100%; height: 100%; border: none; }
         .modal-details { padding: 2rem; background: var(--bg-card); border-top: 1px solid var(--border); }
@@ -317,16 +327,57 @@
             background: var(--bg-body); margin-top: auto;
         }
 
-        /* * 14. RESPONSIVE 
+        /* * 14. RESPONSIVE MEDIA QUERIES 
          */
+        @media (max-width: 900px) {
+            .projects-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+        }
+
         @media (max-width: 768px) {
-            .nav-links { display: none; } /* Mobile: Ideally add hamburger */
-            .river-line { left: 20px; transform: none; }
-            .timeline-dot { left: 20px; transform: translateX(-50%); }
-            .timeline-step { flex-direction: column; padding-left: 50px; }
-            .timeline-content { width: 100%; margin: 0 !important; text-align: left !important; }
-            h1 { font-size: 3rem; }
-            .founder-grid, .projects-grid { grid-template-columns: 1fr; }
+            /* Header */
+            .header-cta { display: none; } /* Hide generic CTA in header to save space */
+            .menu-toggle { display: flex; }
+            
+            /* Mobile Nav Overlay */
+            .nav-links {
+                position: fixed; top: 0; right: -100%; width: 100%; height: 100vh;
+                background: var(--bg-body); flex-direction: column; justify-content: center;
+                transition: 0.4s var(--ease-premium); padding: 2rem; z-index: 1001;
+                border-left: 1px solid var(--border);
+            }
+            .nav-links.active { right: 0; }
+            .nav-link { font-size: 1.5rem; margin: 1rem 0; width: 100%; text-align: center; }
+            
+            /* Typography */
+            h1 { font-size: 2.8rem; }
+            .hero-section { padding-top: 1rem; min-height: auto; margin-bottom: 3rem; }
+            .founder-wrapper { padding: 1.5rem; }
+            
+            /* Timeline - Vertical Mobile Fix */
+            .river-line { display: none; } /* Hide complex line */
+            .timeline-step { 
+                flex-direction: column; padding-left: 1.5rem; margin-bottom: 2rem; 
+                border-left: 2px solid var(--border); margin-left: 10px;
+            }
+            .timeline-dot { left: 10px; transform: translateX(-50%); top: 0; }
+            .timeline-content { 
+                width: 100%; margin: 0 !important; text-align: left !important; 
+                opacity: 1; transform: none; 
+            }
+            
+            /* Grids */
+            .framework-grid, .projects-grid, .skills-grid, .projects-row { 
+                grid-template-columns: 1fr; 
+            }
+            
+            /* Modal */
+            .modal-container { width: 100%; height: 100%; border: none; border-radius: 0; }
+            .modal-iframe-wrapper { min-height: 250px; }
+            .modal-details { padding: 1.5rem; }
+            
+            /* Documents */
+            .doc-item { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+            .doc-item button { width: 100%; text-align: left; margin-top: 0.5rem; }
         }
     </style>
 </head>
@@ -336,14 +387,27 @@
     <header>
         <div class="container nav-inner">
             <div class="logo" onclick="app.navigate('accueil')">ROMAN<span class="text-accent">.</span></div>
-            <nav class="nav-links">
+            
+            <!-- Burger Icon -->
+            <div class="menu-toggle" onclick="app.toggleMenu()">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+
+            <nav class="nav-links" id="nav-menu">
                 <div class="nav-link active" onclick="app.navigate('accueil')">Accueil</div>
                 <div class="nav-link" onclick="app.navigate('parcours')">Parcours</div>
                 <div class="nav-link" onclick="app.navigate('competences')">Compétences</div>
                 <div class="nav-link" onclick="app.navigate('projets')">Projets</div>
                 <div class="nav-link" onclick="app.navigate('contact')">Contact</div>
+                <!-- Mobile only CTA inside menu -->
+                <div style="margin-top: 2rem; display: block; width: 100%; text-align: center;" class="mobile-cta">
+                    <a href="mailto:roman@email.com" class="btn-outline" style="display: inline-block;">Me contacter</a>
+                </div>
             </nav>
-            <a href="mailto:roman@email.com" class="btn-outline" style="padding: 0.5rem 1rem; font-size: 0.8rem;">Me contacter</a>
+            
+            <a href="mailto:roman@email.com" class="btn-outline header-cta" style="padding: 0.5rem 1rem; font-size: 0.8rem;">Me contacter</a>
         </div>
     </header>
 
@@ -364,7 +428,7 @@
                         Je ne me contente pas de projets scolaires. Je construis des systèmes, valide des marchés et cherche la performance.
                     </p>
 
-                    <div style="margin-top: 2rem; display: flex; gap: 1rem;">
+                    <div style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
                         <button onclick="app.navigate('projets')" class="btn-primary">Voir les preuves</button>
                         <button onclick="app.navigate('competences')" class="btn-outline">Mon profil</button>
                     </div>
@@ -408,7 +472,7 @@
                             <span class="badge pro">B2B / Growth</span>
                             <h4 style="margin-top: 1rem; font-size: 1.4rem;">Digitag Pro</h4>
                             <p class="text-muted text-small" style="margin: 0.5rem 0 1.5rem;">Solutions d'avis clients et cartes de visite connectées NFC.</p>
-                            <a href="https://digitagpro.fr" target="_blank" class="btn-outline">Visiter le site</a>
+                            <a href="https://digitagpro.fr" target="_blank" class="btn-outline" style="width:100%; display:block;">Visiter le site</a>
                         </div>
                         
                         <!-- Digitag Memory -->
@@ -416,9 +480,9 @@
                             <span class="badge entrepreneur">B2C / Innovation</span>
                             <h4 style="margin-top: 1rem; font-size: 1.4rem;">Digitag Memory</h4>
                             <p class="text-muted text-small" style="margin: 0.5rem 0 1.5rem;">Plaques connectées pour mémoire numérique et transmission.</p>
-                            <div style="display: flex; gap: 1rem;">
-                                <a href="https://digitagmemory.fr" target="_blank" class="btn-outline">Site</a>
-                                <button onclick="app.open3DModal()" class="btn-primary" style="padding: 0.8rem 1.5rem;">Démo 3D</button>
+                            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                                <a href="https://digitagmemory.fr" target="_blank" class="btn-outline" style="flex:1;">Site</a>
+                                <button onclick="app.open3DModal()" class="btn-primary" style="padding: 0.8rem 1rem; flex:1;">Démo 3D</button>
                             </div>
                         </div>
                     </div>
@@ -520,7 +584,7 @@
     <div class="modal-overlay" id="main-modal" onclick="app.closeModal(event)">
         <div class="modal-container">
             <div class="modal-header">
-                <h3 id="modal-title">Titre du projet</h3>
+                <h3 id="modal-title" style="font-size:1.1rem; margin:0;">Titre du projet</h3>
                 <button class="close-modal" onclick="app.closeModal(event)">&times;</button>
             </div>
             <div class="modal-body">
@@ -532,7 +596,7 @@
                     <p class="text-muted" id="modal-desc">Description...</p>
                     <div style="margin-top: 1.5rem;" id="modal-tags"></div>
                     <div style="margin-top: 2rem;">
-                        <a id="modal-external-link" href="#" target="_blank" class="btn-primary">Ouvrir en plein écran ↗</a>
+                        <a id="modal-external-link" href="#" target="_blank" class="btn-primary" style="width:100%;">Ouvrir en plein écran ↗</a>
                     </div>
                 </div>
             </div>
@@ -596,6 +660,14 @@
                 window.location.hash = pageId;
             },
 
+            // MENU MOBILE TOGGLE
+            toggleMenu: () => {
+                const nav = document.getElementById('nav-menu');
+                const toggle = document.querySelector('.menu-toggle');
+                nav.classList.toggle('active');
+                toggle.classList.toggle('active');
+            },
+
             handleHash: () => {
                 const hash = window.location.hash.replace('#', '') || 'accueil';
                 
@@ -604,12 +676,13 @@
                 const activePage = document.getElementById(hash);
                 if(activePage) activePage.classList.add('active');
                 
+                // Close Mobile Menu on Nav
+                document.getElementById('nav-menu').classList.remove('active');
+                document.querySelector('.menu-toggle').classList.remove('active');
+
                 // Update Nav Active State
                 document.querySelectorAll('.nav-link').forEach(link => {
                     link.classList.remove('active');
-                    // Simple check if the click function matches (simpler than ID matching due to onclick)
-                    // We can match by text content loosely or add data attributes. 
-                    // Let's rely on adding class based on hash for visual feedback
                     if(link.getAttribute('onclick').includes(hash)) {
                         link.classList.add('active');
                     }
