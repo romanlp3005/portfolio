@@ -463,7 +463,7 @@
            13. RESPONSIVE MEDIA QUERIES
            ========================================= */
         @media (max-width: 900px) {
-            .summary-grid, .founder-grid, .contact-layout, .framework-grid, .summary-nav { 
+            .summary-grid, .founder-grid, .contact-layout, .summary-nav { 
                 grid-template-columns: 1fr; gap: 2rem;
             }
             .modal-content { flex-direction: column; }
@@ -472,7 +472,38 @@
         }
 
         @media (max-width: 768px) {
-            /* Mobile Nav */
+            /* 1. FORCE 2 COLUMNS FOR PROJECTS */
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.8rem;
+            }
+            /* Adjust project card for smaller space */
+            .project-card .card-preview { height: 120px; }
+            .project-card .card-body { padding: 0.8rem; }
+            .project-card h4 { font-size: 0.9rem; margin-bottom: 0.3rem; line-height: 1.3; }
+            .project-card .text-muted { display: none; } /* Hide description on mobile to save space */
+            .project-card .badge { font-size: 0.6rem; padding: 2px 6px; }
+            .card-tags { display: none; } /* Hide tags on mobile */
+
+            /* 2. CAROUSELS FOR OTHER SECTIONS */
+            /* Framework, Quick Proofs, Skills */
+            .framework-grid, .quick-proofs, .skills-grid {
+                display: flex;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                gap: 1rem;
+                padding-bottom: 1.5rem; /* space for scroll */
+                margin-right: -1rem; /* bleeding edge */
+                padding-right: 1rem;
+            }
+            
+            .fw-step, .qp-card, .skill-card {
+                min-width: 85%; /* Show most of card */
+                scroll-snap-align: center;
+                flex-shrink: 0;
+            }
+
+            /* 3. MOBILE NAV & GENERAL */
             .nav-links {
                 position: fixed; top: 0; right: -100%; width: 100%; height: 100vh;
                 background: var(--bg-body); flex-direction: column; justify-content: center;
@@ -482,13 +513,8 @@
             .menu-toggle { display: flex; }
             .nav-link { font-size: 1.5rem; }
             
-            /* Typography */
             h1 { font-size: 2.8rem; }
-            
-            /* Stacking fix for mobile */
             .sticky-section { position: relative; top: auto; min-height: auto; padding: 3rem 0; }
-            
-            /* Filters scrollable */
             .filters-container { overflow-x: auto; justify-content: flex-start; padding-left: 5%; padding-right: 5%; white-space: nowrap; }
             
             /* Timeline Vertical Fix */
@@ -572,7 +598,7 @@
                         </div>
                     </div>
 
-                    <!-- Framework -->
+                    <!-- Framework (Carousel on mobile) -->
                     <h3 class="text-center mb-4">Ma Méthode</h3>
                     <div class="framework-grid">
                         <div class="fw-step">
@@ -687,6 +713,7 @@
         <section id="competences" class="page-view">
             <div class="container">
                 <h2 class="text-accent text-center mb-4">Compétences BUT S5</h2>
+                <!-- Carousel on mobile -->
                 <div class="skills-grid" id="skills-inject">
                     <!-- JS Generated -->
                 </div>
@@ -706,6 +733,7 @@
                     <button class="filter-btn" onclick="app.filter('Digital', this)">Digital & Audit</button>
                 </div>
 
+                <!-- 2 Columns on Mobile -->
                 <div class="projects-grid" id="projects-inject">
                     <!-- JS Generated -->
                 </div>
