@@ -281,6 +281,7 @@
         }
         .project-card:hover { transform: translateY(-5px); border-color: var(--accent); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .project-card .card-preview { height: 220px; background: #111; position: relative; overflow: hidden; }
+        /* IFRAME PREVIEW STYLES */
         .preview-iframe { 
             width: 100%; height: 100%; border: none; opacity: 0.8; 
             pointer-events: none; transition: opacity 0.3s;
@@ -354,7 +355,7 @@
             }
             .fw-step, .qp-card, .founder-card { min-width: 85%; scroll-snap-align: center; flex-shrink: 0; }
             
-            /* --- SKILLS --- */
+            /* --- SKILLS LISTE --- */
             .skills-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
             .skill-card { padding: 1.5rem; height: auto; }
             
@@ -370,24 +371,26 @@
             .modal-view { height: 40vh; }
             .modal-info { padding: 1.5rem; }
             
-            /* --- SCROLL FIX FOR FILTERS --- */
+            /* --- WRAPPING FILTERS FIX --- */
             .filters-container { 
                 top: 70px; 
-                justify-content: flex-start; 
-                overflow-x: auto; 
-                -webkit-overflow-scrolling: touch; /* IMPORTANT for iOS smoothness */
-                flex-wrap: nowrap; 
-                padding-left: 4%; 
-                padding-right: 4%;
-                padding-bottom: 10px; /* Space for scrollbar if any */
-                /* Hiding scrollbar */
-                scrollbar-width: none;
-                -ms-overflow-style: none;
+                justify-content: center; /* Center align */
+                overflow-x: visible; /* No scroll needed if wrapping */
+                flex-wrap: wrap; /* Allow wrapping */
+                padding: 0.5rem 1rem;
+                gap: 0.5rem; /* Smaller gap */
+                white-space: normal;
+                padding-bottom: 1rem;
             }
-            .filters-container::-webkit-scrollbar {
-                display: none;
+            /* Removing scrollbar styles since we are wrapping */
+            .filters-container::-webkit-scrollbar { display: auto; }
+            
+            .filter-btn { 
+                white-space: nowrap; 
+                flex: 0 0 auto; 
+                padding: 0.4rem 0.8rem; 
+                font-size: 0.75rem; 
             }
-            .filter-btn { white-space: nowrap; flex-shrink: 0; padding: 0.5rem 1rem; font-size: 0.8rem; }
             
             .doc-row { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
             .doc-row button { width: 100%; text-align: left; }
@@ -410,7 +413,6 @@
                 <div class="nav-link" onclick="app.nav('competences')">Compétences</div>
                 <div class="nav-link" onclick="app.nav('projets')">Projets</div>
                 <div class="nav-link" onclick="app.nav('contact')">Contact</div>
-                <!-- Lien "Mon Parcours" supprimé -->
                 <div style="margin-top: 2rem;">
                     <a href="mailto:roman@email.com" class="btn btn-primary" style="font-size: 0.9rem;">Me contacter</a>
                 </div>
@@ -584,7 +586,7 @@
                 
                 <div class="filters-container">
                     <button class="filter-btn active" onclick="app.filter('all', this)">Tout</button>
-                    <button class="filter-btn" onclick="app.filter('Entrepreneurial', this)">Entrepreneuriat</button>
+                    <button class="filter-btn" onclick="app.filter('Entrepreneurial', this)">Entrepreneurial</button>
                     <button class="filter-btn" onclick="app.filter('Marketing', this)">Marketing</button>
                     <button class="filter-btn" onclick="app.filter('Communication', this)">Communication</button>
                     <button class="filter-btn" onclick="app.filter('Digital', this)">Digital</button>
@@ -741,26 +743,19 @@
                 { id: 5, title: "Audit GioiA", cat: "Digital", type: "Pro", link: "https://www.canva.com/design/DAG-Uhz-9aM/MYAlyebATOSuqP7blmOlpw/view", desc: "Diagnostic digital établissement local. Visibilité Google, RS et préconisations.", skills: ["SEO"] },
                 { id: 16, title: "Stratégie Jardin Zazou", cat: "Digital", type: "Scolaire", link: "https://www.canva.com/design/DAG7xw_R1uM/wC9JJn3jyDkqACq-k9qEhQ/view", desc: "Plan développement digital. Refonte arborescence et contenu.", skills: ["Web"] },
                 { id: 24, title: "Analyse K-Way", cat: "Digital", type: "Scolaire", link: "https://www.canva.com/design/DAGfADJ7pK8/1gaH3eVoidephzvcQvKuxA/view", desc: "Analyse ergonomique et UX site e-commerce K-Way. Tunnel de conversion.", skills: ["UX"] },
+                
                 { id: 2, title: "Benchmark CHROMA", cat: "Entrepreneurial", type: "Perso", link: "https://www.canva.com/design/DAGcQ-J9Xos/bghCpOkCMo0dagJwm3gACQ/view", desc: "Analyse concurrentielle lancement marque CHROMA.", skills: ["Benchmark"] },
                 { id: 20, title: "Charte SUÈNH", cat: "Entrepreneurial", type: "Branding", link: "https://www.canva.com/design/DAGZEHUiy_Y/ZM3fNtnR3snuqxnE9VNjhA/view", desc: "Identité visuelle marque mode éthique.", skills: ["Design"] },
                 { id: 21, title: "Charte Graine Time", cat: "Entrepreneurial", type: "Branding", link: "https://www.canva.com/design/DAGQ2agTW2o/roBnrOiz4h0_nZaATWEYXQ/view", desc: "Identité visuelle projet agro-alimentaire.", skills: ["Design"] },
+                
                 { id: 9, title: "Étude Marché Vêtements", cat: "Marketing", type: "Scolaire", link: "https://www.canva.com/design/DAGWkEHzSIg/RrjDI0WuwxL3GZiBpqCgdg/view", desc: "Étude quanti/quali concept vêtements visionnaires.", skills: ["Data"] },
                 { id: 4, title: "Lancement Boisson", cat: "Marketing", type: "Devoir", link: "https://www.canva.com/design/DAGgxxsPT6s/jHajMVYKM8CcYPjAwDSy0Q/view", desc: "Cas pédagogique : lancement boisson énergisante.", skills: ["Mix Mkt"] },
                 { id: 7, title: "Infographie Slow Mkt", cat: "Marketing", type: "Scolaire", link: "https://www.canva.com/design/DAGbmOtRCwM/usvEBZfKyVN9MGhKd3AZxA/view", desc: "Synthèse visuelle principes Slow Marketing.", skills: ["Synthèse"] },
-                { id: 8, title: "Mkt Jeu Société", cat: "Marketing", type: "Scolaire", link: "https://www.canva.com/design/DAGy4RH5kPE/wXqGJhTMJA0ISbg9KwRsYA/view", desc: "Infographie : 5 étapes commercialisation jeu.", skills: ["Juridique"] },
-                { id: 23, title: "Event Tesla", cat: "Marketing", type: "Scolaire", link: "https://www.canva.com/design/DAGe3yN9UHs/IIjXNZLn1gMOWEiwdPb_wg/view", desc: "Organisation fictive événement Tesla.", skills: ["Event"] },
+                
                 { id: 6, title: "Flyer RE/MAX", cat: "Communication", type: "Stage", link: "https://www.canva.com/design/DAG-UrTp4Ik/EMIuPlTXNiORD0yH7osrcw/view", desc: "Flyer prospection immobilière.", skills: ["Print"] },
                 { id: 3, title: "Rapport Radio SNEE", cat: "Communication", type: "Scolaire", link: "https://www.canva.com/design/DAG-Umrkbz8/WmK2SUCIAfeh6sabw-SAsQ/view", desc: "Analyse émission radio SNEE.", skills: ["Média"] },
-                { id: 19, title: "Flyer Soleil Sud", cat: "Communication", type: "Scolaire", link: "https://www.canva.com/design/DAGGbdOKom4/45N8COlTRLNwcd6yDGNNHg/view", desc: "Support promotionnel agence.", skills: ["PAO"] },
                 { id: 18, title: "Plan Com Soleil Sud", cat: "Communication", type: "Scolaire", link: "https://www.canva.com/design/DAGi21ltfpc/LCWCQrPx6oNt5SSQcKCiGg/view", desc: "Stratégie communication globale.", skills: ["Stratégie"] },
-                { id: 15, title: "Stratégie Veja", cat: "Communication", type: "Scolaire", link: "https://www.canva.com/design/DAG7AdZHu28/PgAdCqwlU9W1g4ZDNM2ctA/view", desc: "Analyse communication Veja.", skills: ["Social"] },
-                { id: 17, title: "Charte Camping", cat: "Communication", type: "Scolaire", link: "https://www.canva.com/design/DAG1wE1JUC4/L-O9vMTp2KJaZIeGTibAXw/view", desc: "Charte éditoriale Camping des Grottes.", skills: ["Brand"] },
-                { id: 10, title: "Affiche JPO", cat: "Communication", type: "Devoir", link: "https://www.canva.com/design/DAF3cGuN5d0/nNmjQkCNIGdxs89XRtAJ_A/view", desc: "Création graphique JPO.", skills: ["Graphisme"] },
-                { id: 11, title: "Kakemono JPO", cat: "Communication", type: "Devoir", link: "https://www.canva.com/design/DAF3mD_LHD0/etvlyOsOexpnIiRlAhnvYg/view", desc: "Signalétique événementielle.", skills: ["Graphisme"] },
-                { id: 12, title: "Flyer JPO (EN)", cat: "Communication", type: "Devoir", link: "https://www.canva.com/design/DAF3mPmRk08/zLKW2K9s6ermcftxl1OKBg/view", desc: "Support communication anglais.", skills: ["Anglais"] },
-                { id: 13, title: "Flyer Petit Bateau", cat: "Communication", type: "Exercice", link: "https://www.canva.com/design/DAG-U65lPgU/jBBTVlgIqZjNzueNWg1Zbg/view", desc: "Exercice charte graphique.", skills: ["Graphisme"] },
-                { id: 22, title: "Charte Réseaux TC", cat: "Communication", type: "Scolaire", link: "https://www.canva.com/design/DAF2UL6QMwg/0pzuUz_o6BE3ioGj_bCh2w/view", desc: "Proposition logo TC France.", skills: ["Logo"] },
-                { id: 14, title: "Maison d'Édition", cat: "Communication", type: "Scolaire", link: "https://www.canva.com/design/DAGiL3UE4qQ/R7rXaJWe_XKigYL21NGNiA/view", desc: "Rapport secteur édition.", skills: ["Stratégie"] }
+                { id: 15, title: "Stratégie Veja", cat: "Communication", type: "Scolaire", link: "https://www.canva.com/design/DAG7AdZHu28/PgAdCqwlU9W1g4ZDNM2ctA/view", desc: "Analyse communication Veja.", skills: ["Social"] }
             ]
         };
 
