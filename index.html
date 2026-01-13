@@ -348,12 +348,37 @@
             .project-card p.text-muted, .project-card .card-tags { display: none; }
             .project-card .badge { font-size: 0.6rem; padding: 2px 4px; margin-bottom: 2px; }
 
-            /* --- CAROUSELS --- */
+            /* --- CAROUSELS FLUIDES --- */
             .framework-grid, .quick-proofs, .founder-grid {
-                display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 1rem;
-                padding-bottom: 1rem; margin-right: -4%; padding-right: 4%;
+                display: flex; 
+                flex-wrap: nowrap; /* EMPÊCHE LE RETOUR À LA LIGNE */
+                overflow-x: auto; 
+                -webkit-overflow-scrolling: touch; /* SCROLL FLUIDE IOS */
+                scroll-snap-type: x mandatory; 
+                gap: 1rem;
+                padding-bottom: 1.5rem; 
+                margin-right: -1rem; 
+                padding-right: 1rem;
+                width: calc(100% + 1rem);
+                
+                /* HIDE SCROLLBAR BUT KEEP SCROLL */
+                -ms-overflow-style: none;
+                scrollbar-width: none;
             }
-            .fw-step, .qp-card, .founder-card { min-width: 85%; scroll-snap-align: center; flex-shrink: 0; }
+            .framework-grid::-webkit-scrollbar, 
+            .quick-proofs::-webkit-scrollbar, 
+            .founder-grid::-webkit-scrollbar {
+                display: none;
+            }
+            
+            .fw-step, .qp-card, .founder-card {
+                min-width: 85%; /* LARGEUR FIXE PAR CARTE */
+                flex: 0 0 85%; /* EMPÊCHE LE RÉTRÉCISSEMENT */
+                scroll-snap-align: center;
+            }
+            
+            /* ADJUST PADDING */
+            .summary-block { padding: 1.5rem; }
             
             /* --- SKILLS LISTE --- */
             .skills-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
@@ -374,23 +399,13 @@
             /* --- WRAPPING FILTERS FIX --- */
             .filters-container { 
                 top: 70px; 
-                justify-content: center; /* Center align */
-                overflow-x: visible; /* No scroll needed if wrapping */
+                justify-content: flex-start; /* Align start */
+                overflow-x: auto; /* Scrollable if needed */
                 flex-wrap: wrap; /* Allow wrapping */
                 padding: 0.5rem 1rem;
-                gap: 0.5rem; /* Smaller gap */
-                white-space: normal;
-                padding-bottom: 1rem;
+                gap: 0.5rem;
             }
-            /* Removing scrollbar styles since we are wrapping */
-            .filters-container::-webkit-scrollbar { display: auto; }
-            
-            .filter-btn { 
-                white-space: nowrap; 
-                flex: 0 0 auto; 
-                padding: 0.4rem 0.8rem; 
-                font-size: 0.75rem; 
-            }
+            .filter-btn { white-space: nowrap; flex-shrink: 0; padding: 0.4rem 0.8rem; font-size: 0.75rem; }
             
             .doc-row { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
             .doc-row button { width: 100%; text-align: left; }
@@ -440,7 +455,7 @@
                 </div>
             </div>
 
-            <!-- Résumé -->
+            <!-- Résumé (Carousel Mobile FIX) -->
             <div class="sticky-section">
                 <div class="container">
                     <div class="summary-block">
@@ -450,6 +465,7 @@
                                 <p><strong>Cible :</strong> Business Developer Digital / Entrepreneur.</p>
                                 <p>Approche orientée résultats : Analyse stratégique + Exécution opérationnelle.</p>
                             </div>
+                            <!-- Quick Proofs Carousel -->
                             <div class="quick-proofs" style="margin-bottom: 0;">
                                 <div class="qp-card">
                                     <i data-lucide="zap" class="qp-icon icon-lg"></i>
@@ -470,7 +486,7 @@
                         </div>
                     </div>
 
-                    <!-- Framework -->
+                    <!-- Framework (Carousel Mobile FIX) -->
                     <h3 class="text-center mb-4">Ma Méthode</h3>
                     <div class="framework-grid">
                         <div class="fw-step">
@@ -516,7 +532,7 @@
                         </div>
                     </div>
 
-                    <!-- DIGITAG -->
+                    <!-- DIGITAG (Carousel Mobile FIX) -->
                     <div class="founder-section">
                         <h3 class="text-accent">Fondateur Digitag</h3>
                         <p class="mb-4">Solutions QR/NFC connectées.</p>
@@ -573,22 +589,23 @@
         <section id="competences" class="page-view">
             <div class="container">
                 <h2 class="text-accent text-center mb-4">Compétences BUT S5</h2>
+                <!-- List style on mobile -->
                 <div class="skills-grid" id="skills-inject">
                     <!-- JS Generated -->
                 </div>
             </div>
         </section>
 
-        <!-- PAGE 3: PROJETS -->
+        <!-- PAGE 3: PROJETS (2 cols Mobile) -->
         <section id="projets" class="page-view">
             <div class="container">
                 <h2 class="text-accent text-center">Projets</h2>
                 
                 <div class="filters-container">
                     <button class="filter-btn active" onclick="app.filter('all', this)">Tout</button>
-                    <button class="filter-btn" onclick="app.filter('Entrepreneurial', this)">Entrepreneurial</button>
+                    <button class="filter-btn" onclick="app.filter('Entrepreneurial', this)">Entrepreneuriat</button>
                     <button class="filter-btn" onclick="app.filter('Marketing', this)">Marketing</button>
-                    <button class="filter-btn" onclick="app.filter('Communication', this)">Communication</button>
+                    <button class="filter-btn" onclick="app.filter('Communication', this)">Com</button>
                     <button class="filter-btn" onclick="app.filter('Digital', this)">Digital</button>
                 </div>
 
