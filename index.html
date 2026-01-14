@@ -193,13 +193,25 @@
         .stat-num { font-size: 2rem; font-weight: 700; color: #fff; line-height: 1; display: block; }
         .qp-icon { color: var(--accent); margin-bottom: 0.5rem; }
 
-        .framework-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 5rem; }
+        /* FRAMEWORK GRID - UPDATED */
+        .framework-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; margin-bottom: 5rem; }
         .fw-step { 
-            background: var(--bg-card); padding: 2rem; border-top: 2px solid var(--border-light); position: relative;
+            background: linear-gradient(180deg, var(--bg-card) 0%, rgba(20,20,20,0) 100%); 
+            padding: 2.5rem 2rem; 
+            border: 1px solid var(--border-light); 
+            border-top: 1px solid var(--accent); /* Fine elegant line */
+            position: relative;
             display: flex; flex-direction: column; gap: 1rem; 
+            transition: transform 0.3s ease;
         }
-        .fw-icon { color: var(--accent); }
-        .fw-title { font-size: 1.2rem; color: #fff; font-weight: 600; margin: 0; }
+        .fw-step:hover { transform: translateY(-5px); border-color: var(--border-light); }
+        .fw-num { 
+            font-family: var(--font-heading); font-size: 4rem; color: var(--border-light); 
+            font-weight: 700; line-height: 1; position: absolute; top: 1rem; right: 1.5rem; opacity: 0.3;
+        }
+        .fw-icon { color: var(--accent); margin-bottom: 0.5rem; }
+        .fw-title { font-size: 1.3rem; color: #fff; font-weight: 500; margin: 0; letter-spacing: 0.02em; }
+        .fw-desc { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; margin: 0; }
 
         .highlight-project {
             background: linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=1974&auto=format&fit=crop');
@@ -458,7 +470,7 @@
                     <div class="hero-subtitle">BUT TC • Parcours Entrepreneurial</div>
                     <h1>Roman <br>Layani-Pujol</h1>
                     <h3 class="text-accent" style="font-weight: 400; font-style: italic;">"De l’idée au business viable"</h3>
-                    <p style="max-width: 600px; margin-top: 1rem;">
+                    <p style="max-width: 600px; margin: 1rem auto;">
                         Je construis des systèmes, valide des marchés et cherche la performance.
                     </p>
                     <div style="margin-top: 2rem; display: flex; gap: 1rem;">
@@ -507,24 +519,28 @@
                     <h3 class="text-center mb-4">Ma Méthode</h3>
                     <div class="framework-grid">
                         <div class="fw-step">
+                            <span class="fw-num">01</span>
                             <i data-lucide="search" class="fw-icon icon mb-2"></i>
                             <h4 class="fw-title">Explorer</h4>
-                            <p class="text-muted" style="font-size: 0.9rem;">Identifier problème & cible.</p>
+                            <p class="fw-desc">Identifier problème & cible.</p>
                         </div>
                         <div class="fw-step">
+                            <span class="fw-num">02</span>
                             <i data-lucide="check-circle" class="fw-icon icon mb-2"></i>
                             <h4 class="fw-title">Valider</h4>
-                            <p class="text-muted" style="font-size: 0.9rem;">Étude marché & Tests terrain.</p>
+                            <p class="fw-desc">Étude marché & Tests terrain.</p>
                         </div>
                         <div class="fw-step">
+                            <span class="fw-num">03</span>
                             <i data-lucide="hammer" class="fw-icon icon mb-2"></i>
                             <h4 class="fw-title">Construire</h4>
-                            <p class="text-muted" style="font-size: 0.9rem;">Offre, Pricing & Supports.</p>
+                            <p class="fw-desc">Offre, Pricing & Supports.</p>
                         </div>
                         <div class="fw-step">
+                            <span class="fw-num">04</span>
                             <i data-lucide="trending-up" class="fw-icon icon mb-2"></i>
                             <h4 class="fw-title">Accélérer</h4>
-                            <p class="text-muted" style="font-size: 0.9rem;">Acquisition & Automatisation.</p>
+                            <p class="fw-desc">Acquisition & Automatisation.</p>
                         </div>
                     </div>
                 </div>
